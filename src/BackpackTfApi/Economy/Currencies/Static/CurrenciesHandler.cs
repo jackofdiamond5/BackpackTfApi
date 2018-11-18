@@ -11,7 +11,7 @@ namespace BackpackTfApi.Economy.Currencies.Static
         /// <summary>
         /// Fetch currencies data from BackpackTF
         /// </summary>
-        /// <param name="url"></param>
+        /// <param name="uri"></param>
         /// <returns></returns>
         public static CurrenciesData DownloadCurrencyData(string uri)
         {
