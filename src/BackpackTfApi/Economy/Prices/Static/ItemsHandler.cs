@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net;
+
+using BackpackTfApi.Static;
 using BackpackTfApi.Economy.Prices.Models;
 
 namespace BackpackTfApi.Economy.Prices.Static

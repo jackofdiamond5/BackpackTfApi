@@ -1,4 +1,4 @@
-﻿namespace BackpackTfApi.Economy.Prices.Static
+﻿namespace BackpackTfApi.Static
 {
     public static class Messages
     {
@@ -11,5 +11,7 @@
         public const string CraftableUnionDeserializeErrorMessage = "Cannot unmarshal type CraftableUnion.";
 
         public const string CraftableUnionSerializeErrorMessage = "Cannot marshal type CraftableUnion.";
+
+        public const string CurrencyNotFoundError = "Cannot resolve currency name.";
     }
 }

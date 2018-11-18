@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-using BackpackTfApi.Economy.Prices.Templates;
+using BackpackTfApi.Static;
 using BackpackTfApi.Economy.Prices.Models;
-using BackpackTfApi.Economy.Prices.Static;
+using BackpackTfApi.Economy.Prices.Templates;
 
 namespace BackpackTfApi.Economy.Prices.Utilities
 {

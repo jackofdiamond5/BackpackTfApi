@@ -1,8 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
 
+using BackpackTfApi.Static;
 using BackpackTfApi.Economy.Prices.Models;
-using BackpackTfApi.Economy.Prices.Static;
 
 namespace BackpackTfApi.Economy.Prices.Utilities
 {
