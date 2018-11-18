@@ -26,11 +26,16 @@ namespace BackpackTfApi.Economy.Prices.Static
         /// <param name="itemName"></param>
         /// <param name="qualityIndex"></param>
         /// <returns></returns>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
         public static Tradable GetTradableItem(Response response, string itemName, string qualityIndex)
         {
-            var itemData = GetItemData(response, itemName, qualityIndex);
-            return itemData.Tradable;
+            if (ResponseIsInitialized(response))
+            {
+                var itemData = GetItemData(response, itemName, qualityIndex);
+                return itemData.Tradable;
+            }
+
+            throw new ArgumentNullException(Messages.ResponseNullError);
         }
 
         /// <summary>
@@ -40,11 +45,16 @@ namespace BackpackTfApi.Economy.Prices.Static
         /// <param name="itemName"></param>
         /// <param name="qualityIndex"></param>
         /// <returns></returns>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
         public static NonTradable GetNonTradableItem(Response response, string itemName, string qualityIndex)
         {
-            var itemData = GetItemData(response, itemName, qualityIndex);
-            return itemData.NonTradable;
+            if (ResponseIsInitialized(response))
+            {
+                var itemData = GetItemData(response, itemName, qualityIndex);
+                return itemData.NonTradable;
+            }
+
+            throw new ArgumentNullException(Messages.ResponseNullError);
         }
 
         /// <summary>
@@ -54,8 +64,13 @@ namespace BackpackTfApi.Economy.Prices.Static
         /// <param name="itemName"></param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
         public static Item GetItemByName(Response response, string itemName)
         {
+            if (!ResponseIsInitialized(response))
+            {
+                throw new ArgumentNullException(Messages.ResponseNullError);
+            }
             if (response.Items.ContainsKey(itemName))
             {
                 return response.Items[itemName];
@@ -74,5 +89,7 @@ namespace BackpackTfApi.Economy.Prices.Static
 
             throw new InvalidOperationException(Messages.ItemNotFoundErrorMessage);
         }
+
+        private static bool ResponseIsInitialized(Response response) => response.IsInitialized;
     }
 }

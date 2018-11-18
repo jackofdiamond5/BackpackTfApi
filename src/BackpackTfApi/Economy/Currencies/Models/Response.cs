@@ -17,5 +17,8 @@ namespace BackpackTfApi.Economy.Currencies.Models
 
         [JsonProperty("currencies")]
         public IDictionary<string, CurrencyType> Currencies { get; set; }
+
+        internal bool IsInitialized
+         => this.Message != null && this.Name != null && this.Url != null && this.Currencies != null;
     }
 }

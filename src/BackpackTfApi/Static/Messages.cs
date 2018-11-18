@@ -13,5 +13,7 @@
         public const string CraftableUnionSerializeErrorMessage = "Cannot marshal type CraftableUnion.";
 
         public const string CurrencyNotFoundError = "Cannot resolve currency name.";
+
+        public const string ResponseNullError = "Cannot resolve \"response\" argument.";
     }
 }
