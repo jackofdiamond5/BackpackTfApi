@@ -26,7 +26,7 @@ namespace BackpackTfApi.Economy.Prices.Utilities
                     return Currency.Usd;
             }
 
-            throw new JsonReaderException(Messages.DeserializeCurrencyErrorMessage);
+            throw new JsonReaderException(Messages.DeserializeCurrencyError);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -53,7 +53,7 @@ namespace BackpackTfApi.Economy.Prices.Utilities
                     return;
             }
 
-            throw new JsonWriterException(Messages.SerializeCurrencyErrorMessage);
+            throw new JsonWriterException(Messages.SerializeCurrencyError);
         }
 
         public static readonly CurrencyConverter Singleton = new CurrencyConverter();

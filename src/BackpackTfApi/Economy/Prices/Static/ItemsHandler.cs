@@ -76,7 +76,7 @@ namespace BackpackTfApi.Economy.Prices.Static
                 return response.Items[itemName];
             }
 
-            throw new InvalidOperationException(Messages.ItemNotFoundErrorMessage);
+            throw new InvalidOperationException(Messages.ItemNotFoundError);
         }
 
         private static Price GetItemData(Response response, string itemName, string qualityIndex)
@@ -87,7 +87,7 @@ namespace BackpackTfApi.Economy.Prices.Static
                 return item.Prices[qualityIndex];
             }
 
-            throw new InvalidOperationException(Messages.ItemNotFoundErrorMessage);
+            throw new InvalidOperationException(Messages.ItemNotFoundError);
         }
 
         private static bool ResponseIsInitialized(Response response) => response.IsInitialized;

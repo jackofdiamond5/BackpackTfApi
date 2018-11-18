@@ -25,7 +25,7 @@ namespace BackpackTfApi.Economy.Prices.Utilities
                     return new CraftableUnion { CraftableElementArray = arrayValue };
             }
 
-            throw new JsonReaderException(Messages.CraftableUnionDeserializeErrorMessage);
+            throw new JsonReaderException(Messages.CraftableUnionDeserializeErroe);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -42,7 +42,7 @@ namespace BackpackTfApi.Economy.Prices.Utilities
                 return;
             }
 
-            throw new JsonWriterException(Messages.CraftableUnionSerializeErrorMessage);
+            throw new JsonWriterException(Messages.CraftableUnionSerializeError);
         }
 
         public static readonly CraftableUnionConverter Singleton = new CraftableUnionConverter();
