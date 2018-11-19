@@ -7,9 +7,9 @@ namespace BackpackTfApi.Economy.Prices.Models
     public partial class Item
     {
         [JsonProperty("defindex")]
-        internal ICollection<long> Defindex { get; set; }
+        public ICollection<long> Defindex { get; internal set; }
 
         [JsonProperty("prices")]
-        internal IDictionary<string, Price> Prices { get; set; }
+        public IDictionary<string, Price> Prices { get; internal set; }
     }
 }

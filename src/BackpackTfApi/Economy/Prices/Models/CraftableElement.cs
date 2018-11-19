@@ -2,24 +2,24 @@
 
 namespace BackpackTfApi.Economy.Prices.Models
 {
-    internal partial class CraftableElement
+    public partial class CraftableElement
     {
         [JsonProperty("value")]
-        internal double? Value { get; set; }
+        public double? Value { get; internal set; }
 
         [JsonProperty("currency")]
-        internal Currency? Currency { get; set; }
+        public Currency? Currency { get; internal set; }
 
         [JsonProperty("difference")]
-        internal double? Difference { get; set; }
+        public double? Difference { get; internal set; }
 
         [JsonProperty("last_update")]
-        internal long? LastUpdate { get; set; }
+        public long? LastUpdate { get; internal set; }
 
         [JsonProperty("value_high", NullValueHandling = NullValueHandling.Ignore)]
-        internal double? ValueHigh { get; set; }
+        public double? ValueHigh { get; internal set; }
 
         [JsonProperty("australium", NullValueHandling = NullValueHandling.Ignore)]
-        internal bool? Australium { get; set; }
+        public bool? Australium { get; internal set; }
     }
 }

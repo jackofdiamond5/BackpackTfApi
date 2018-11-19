@@ -4,7 +4,7 @@ using BackpackTfApi.Economy.Prices.Models;
 
 namespace BackpackTfApi.Economy.Prices.Templates
 {
-    internal partial struct CraftableUnion
+    public partial struct CraftableUnion
     {
         public ICollection<CraftableElement> CraftableElementArray;
         public Dictionary<string, CraftableElement> CraftableElementMap;

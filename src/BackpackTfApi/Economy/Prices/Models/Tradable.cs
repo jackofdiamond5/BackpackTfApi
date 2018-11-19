@@ -7,9 +7,9 @@ namespace BackpackTfApi.Economy.Prices.Models
     public partial class Tradable
     {
         [JsonProperty("Craftable", NullValueHandling = NullValueHandling.Ignore)]
-        internal CraftableUnion? Craftable { get; set; }
+        public CraftableUnion? Craftable { get; internal set; }
 
         [JsonProperty("Non-Craftable", NullValueHandling = NullValueHandling.Ignore)]
-        internal CraftableUnion? NonCraftable { get; set; }
+        public CraftableUnion? NonCraftable { get; internal set; }
     }
 }

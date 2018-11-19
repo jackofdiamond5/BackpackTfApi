@@ -2,12 +2,12 @@
 
 namespace BackpackTfApi.Economy.Prices.Models
 {
-    internal partial class Price
+    public partial class Price
     {
         [JsonProperty("Tradable")]
-        internal Tradable Tradable { get; set; }
+        public Tradable Tradable { get; internal set; }
 
         [JsonProperty("Non-Tradable", NullValueHandling = NullValueHandling.Ignore)]
-        internal NonTradable NonTradable { get; set; }
+        public NonTradable NonTradable { get; internal set; }
     }
 }

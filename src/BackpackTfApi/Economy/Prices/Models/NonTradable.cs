@@ -6,9 +6,9 @@ namespace BackpackTfApi.Economy.Prices.Models
     public partial class NonTradable
     {
         [JsonProperty("Craftable", NullValueHandling = NullValueHandling.Ignore)]
-        internal ICollection<CraftableElement> Craftable { get; set; }
+        public ICollection<CraftableElement> Craftable { get; internal set; }
 
         [JsonProperty("Non-Craftable", NullValueHandling = NullValueHandling.Ignore)]
-        internal ICollection<CraftableElement> NonCraftable { get; set; }
+        public ICollection<CraftableElement> NonCraftable { get; internal set; }
     }
 }
