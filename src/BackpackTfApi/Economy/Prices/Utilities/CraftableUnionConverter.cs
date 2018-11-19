@@ -21,7 +21,7 @@ namespace BackpackTfApi.Economy.Prices.Utilities
                     var objectValue = serializer.Deserialize<Dictionary<string, CraftableElement>>(reader);
                     return new CraftableUnion { CraftableElementMap = objectValue };
                 case JsonToken.StartArray:
-                    var arrayValue = serializer.Deserialize<CraftableElement[]>(reader);
+                    var arrayValue = serializer.Deserialize<ICollection<CraftableElement>>(reader);
                     return new CraftableUnion { CraftableElementArray = arrayValue };
             }
 

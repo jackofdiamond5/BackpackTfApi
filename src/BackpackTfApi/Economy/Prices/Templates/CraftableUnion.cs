@@ -6,7 +6,7 @@ namespace BackpackTfApi.Economy.Prices.Templates
 {
     internal partial struct CraftableUnion
     {
-        public CraftableElement[] CraftableElementArray;
+        public ICollection<CraftableElement> CraftableElementArray;
         public Dictionary<string, CraftableElement> CraftableElementMap;
 
         public static implicit operator CraftableUnion(CraftableElement[] CraftableElementArray)
