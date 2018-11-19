@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Economy\SpecialItems\" />
-    <Folder Include="Economy\PriceHistory\" />
   </ItemGroup>
 
 </Project>
