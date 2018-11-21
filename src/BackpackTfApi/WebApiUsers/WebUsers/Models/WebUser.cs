@@ -8,7 +8,7 @@ namespace BackpackTfApi.WebApiUsers.WebUsers.Models
     public class WebUser
     {
         [JsonProperty("steamid")]
-        public ulong SteamId { get; internal set; }
+        public long SteamId { get; internal set; }
 
         [JsonProperty("success")]
         public int Success { get; internal set; }
