@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Classifieds\UserListings\" />
     <Folder Include="Classifieds\UserToken\Utilities\" />
   </ItemGroup>
 
