@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BackpackTfApi.Classifieds.UserToken.Models
+namespace BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models
 {
     public class Attribute
     {

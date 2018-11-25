@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-using BackpackTfApi.Classifieds.UserToken.Models;
+using BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models;
 
 namespace BackpackTfApi.Classifieds.Templates
 {
