@@ -11,6 +11,6 @@ namespace BackpackTfApi.Classifieds.UserToken.Models
         public long Value { get; internal set; }
 
         [JsonProperty("float_value")]
-        public decimal FloatValue { get; internal set; }
+        public decimal? FloatValue { get; internal set; }
     }
 }

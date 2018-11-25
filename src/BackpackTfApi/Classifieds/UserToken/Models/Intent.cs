@@ -10,7 +10,7 @@ namespace BackpackTfApi.Classifieds.UserToken.Models
         public int Total { get; internal set; }
 
         [JsonProperty("listings")]
-        public IReadOnlyCollection<Listing> Listings { get; internal set; }
+        public IReadOnlyCollection<ClassifiedSearchListing> Listings { get; internal set; }
 
         [JsonProperty("fold")]
         public bool Fold { get; internal set; }

@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using Newtonsoft.Json;
 
 namespace BackpackTfApi.Classifieds.UserToken.Models
 {
@@ -22,5 +23,8 @@ namespace BackpackTfApi.Classifieds.UserToken.Models
 
         [JsonProperty("name")]
         public string Name { get; internal set; }
+
+        [JsonProperty("marketplace_price", NullValueHandling = NullValueHandling.Ignore)]
+        public decimal? MarketplacePrice { get; internal set; }
     }
 }
