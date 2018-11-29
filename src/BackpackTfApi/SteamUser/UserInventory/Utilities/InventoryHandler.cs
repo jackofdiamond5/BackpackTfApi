@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace BackpackTfApi.SteamUser.UserInventory.Models
 {
-    // https://github.com/babelshift/SteamWebAPI2
     public static class InventoryHandler
     {
         /// <summary>
