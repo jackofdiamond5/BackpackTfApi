@@ -1,6 +1,6 @@
-﻿using BackpackTfApi.Classifieds.Templates;
+﻿using Newtonsoft.Json;
 
-using Newtonsoft.Json;
+using BackpackTfApi.Classifieds.Templates;
 
 namespace BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models
 {
