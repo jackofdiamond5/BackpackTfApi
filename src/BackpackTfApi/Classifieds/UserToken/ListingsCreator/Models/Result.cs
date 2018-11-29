@@ -2,14 +2,14 @@
 {
     public class Result
     {
-        public string Created { get; internal set; }
+        public int? Created { get; internal set; }
 
-        public Error Error { get; internal set; }
+        public Error? Error { get; internal set; }
 
-        public string Retry { get; internal set; }
+        public long? Retry { get; internal set; }
 
-        public string Used { get; internal set; }
+        public int? Used { get; internal set; }
 
-        public string Cap { get; internal set; }
+        public int? Cap { get; internal set; }
     }
 }
