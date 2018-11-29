@@ -6,6 +6,6 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
     {
         public Output Response { get; internal set; }
 
-        public Output FromJson(string json) => JsonConvert.DeserializeObject<Output>(json);
+        public static Output FromJson(string json) => JsonConvert.DeserializeObject<Output>(json);
     }
 }
