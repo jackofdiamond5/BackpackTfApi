@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
 using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
 {
-    public class Output
+    public class Response
     {
         [JsonProperty("message")]
         public string Message { get; internal set; }
 
         [JsonProperty("listings")]
-        public IReadOnlyDictionary<long, Result> Result { get; internal set; }
+        public IReadOnlyDictionary<string, Result> Result { get; internal set; }
     }
 }
