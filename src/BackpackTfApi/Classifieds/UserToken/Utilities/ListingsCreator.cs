@@ -1,8 +1,9 @@
 ﻿using System.Net;
+using System.IO;
+
 using Newtonsoft.Json;
 
 using BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models;
-using System.Collections.Generic;
 
 namespace BackpackTfApi.Classifieds.UserToken.Utilities
 {
@@ -10,18 +11,21 @@ namespace BackpackTfApi.Classifieds.UserToken.Utilities
     {
         public static Response CreateListings(Input inputData, string uri)
         {
-            using (var client = new WebClient())
+            var json = JsonConvert.SerializeObject(inputData);
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                try
-                {
-                    var response = client.UploadString(uri, JsonConvert.SerializeObject(inputData));
-                    return OutputData.FromJson(response);
-                }
-                catch (WebException ex)
-                {
-                    // TODO
-                    return null;
-                }
+                streamWriter.Write(json);
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            var httpResponseStream = httpResponse.GetResponseStream();
+            using (var streamReader = new StreamReader(httpResponseStream))
+            {
+                return OutputData.FromJson(streamReader.ReadToEnd());
             }
         }
     }

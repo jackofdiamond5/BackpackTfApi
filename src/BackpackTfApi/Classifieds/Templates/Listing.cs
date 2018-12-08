@@ -26,7 +26,7 @@ namespace BackpackTfApi.Classifieds.Templates
 
         [JsonProperty("details")]
         public string Details { get; internal set; }
-        
+
         [JsonProperty("intent")]
         public int Intent { get; internal set; }
     }

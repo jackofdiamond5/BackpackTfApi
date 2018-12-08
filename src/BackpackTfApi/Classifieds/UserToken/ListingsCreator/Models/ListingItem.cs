@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
 {
     public class ListingItem
     {
-        public ListingItem(string quality, string itemName, string craftable, int? priceindex = 0)
+        public ListingItem(string quality, string itemName, string craftable, int? priceindex = null)
         {
             this.Quality = quality;
             this.ItemName = itemName;

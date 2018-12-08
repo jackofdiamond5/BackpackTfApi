@@ -2,11 +2,11 @@
 
 namespace BackpackTfApi.Economy.SpecialItems
 {
-    public class SpecialitemsData
+    public class SpecialItemsData
     {
         [JsonProperty("response")]
         public Response Response { get; internal set; }
 
-        public static SpecialitemsData FromJson(string json) => JsonConvert.DeserializeObject<SpecialitemsData>(json);
+        public static SpecialItemsData FromJson(string json) => JsonConvert.DeserializeObject<SpecialItemsData>(json);
     }
 }

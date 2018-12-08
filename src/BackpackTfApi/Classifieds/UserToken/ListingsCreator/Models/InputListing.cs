@@ -14,9 +14,10 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
             ListingItem item,
             IReadOnlyDictionary<string, decimal> currencies,
             string details,
-            int? offers = 1,
-            int? buyOut = 1,
-            int? promoted = 0)
+            int intent,
+            int? offers = null,
+            int? buyOut = null,
+            int? promoted = null)
         {
             this.Id = id;
             this.Item = item;
@@ -25,6 +26,7 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
             this.Offers = offers;
             this.Buyout = buyOut;
             this.Promoted = promoted;
+            this.Intent = intent;
         }
 
         [JsonProperty("promoted")]
