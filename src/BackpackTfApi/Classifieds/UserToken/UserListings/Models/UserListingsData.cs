@@ -6,6 +6,6 @@ namespace BackpackTfApi.Classifieds.UserToken.UserListings.Models
     {
         public Response Response { get; internal set; }
 
-        public Response FromJson(string json) => JsonConvert.DeserializeObject<Response>(json);
+        public static Response FromJson(string json) => JsonConvert.DeserializeObject<Response>(json);
     }
 }
