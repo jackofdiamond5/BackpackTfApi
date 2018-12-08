@@ -15,6 +15,6 @@ namespace BackpackTfApi.Classifieds.UserToken.UserListings.Models
         public int PromotesRemaining { get; internal set; }
 
         [JsonProperty("items")]
-        public IReadOnlyCollection<Item> Items { get; internal set; }
+        public IReadOnlyCollection<SearchItem> Items { get; internal set; }
     }
 }

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models
 {
-    public class Item
+    public abstract class Item
     {
         [JsonProperty("defindex")]
         public int Defindex { get; internal set; }

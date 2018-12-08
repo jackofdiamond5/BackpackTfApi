@@ -10,8 +10,7 @@ namespace BackpackTfApi.Classifieds.Templates
     {
         [JsonProperty("id")]
         public string Id { get; internal set; }
-
-        // TODO: Generalize the class Item
+        
         [JsonProperty("item")]
         public Item Item { get; internal set; }
 

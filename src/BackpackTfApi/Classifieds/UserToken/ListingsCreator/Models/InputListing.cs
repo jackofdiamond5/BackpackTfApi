@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 
 using BackpackTfApi.Classifieds.Templates;
-using BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models;
 
 namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
 {
@@ -11,10 +10,10 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
     {
         public InputListing(
             string id,
-            ListingItem item,
             IReadOnlyDictionary<string, decimal> currencies,
             string details,
             int intent,
+            ListingItem item = null,
             int? offers = null,
             int? buyOut = null,
             int? promoted = null)

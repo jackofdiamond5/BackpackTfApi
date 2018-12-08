@@ -13,5 +13,7 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
 
         [JsonProperty("listings")]
         public ICollection<InputListing> Listings { get; internal set; }
+
+        public string ToJson() => JsonConvert.SerializeObject(this);
     }
 }

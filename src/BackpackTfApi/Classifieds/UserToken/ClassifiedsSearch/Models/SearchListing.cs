@@ -4,7 +4,7 @@ using BackpackTfApi.Classifieds.Templates;
 
 namespace BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models
 {
-    public class ClassifiedSearchListing : Listing
+    public class SearchListing : Listing
     {
         [JsonProperty("steamid")]
         public string SteamId { get; internal set; }
@@ -17,5 +17,8 @@ namespace BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models
 
         [JsonProperty("bump")]
         public long Bump { get; internal set; }
+
+        [JsonProperty("item")]
+        public new SearchItem Item { get; internal set; }
     }
 }
