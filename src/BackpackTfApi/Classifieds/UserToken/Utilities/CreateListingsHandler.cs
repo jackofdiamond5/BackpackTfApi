@@ -5,9 +5,9 @@ using BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models;
 
 namespace BackpackTfApi.Classifieds.UserToken.Utilities
 {
-    public static class ListingsCreator
+    public static class CreateListingsHandler
     {
-        public static Response CreateSellListings(Input inputData, string uri)
+        public static Response CreateListings(Input inputData, string uri)
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
             httpWebRequest.ContentType = "application/json";
@@ -23,11 +23,6 @@ namespace BackpackTfApi.Classifieds.UserToken.Utilities
             {
                 return OutputData.FromJson(streamReader.ReadToEnd());
             }
-        }
-
-        public static Response CreateBuyListings(Input inputdata, string uri)
-        {
-            return null;
         }
     }
 }

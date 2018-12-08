@@ -9,10 +9,10 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
     public class InputListing : Listing
     {
         public InputListing(
-            string assetid,
+            int intent,
             IReadOnlyDictionary<string, decimal> currencies,
             string details,
-            int intent,
+            string assetid = null,
             ListingItem item = null,
             int? offers = null,
             int? buyOut = null,

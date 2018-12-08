@@ -4,10 +4,10 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
 {
     public class ListingItem
     {
-        public ListingItem(string quality, string itemName, string craftable, int? priceindex = null)
+        public ListingItem(string itemName, string quality, string craftable = null, int? priceindex = null)
         {
-            this.Quality = quality;
             this.ItemName = itemName;
+            this.Quality = quality;
             this.Craftable = craftable;
             this.PriceIndex = priceindex;
         }
