@@ -6,10 +6,7 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
 {
     public class Response
     {
-        [JsonProperty("message")]
-        public string Message { get; internal set; }
-
         [JsonProperty("listings")]
-        public IReadOnlyDictionary<string, Result> Result { get; internal set; }
+        public IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> Result { get; internal set; }
     }
 }

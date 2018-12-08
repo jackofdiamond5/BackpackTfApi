@@ -9,7 +9,7 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
     public class InputListing : Listing
     {
         public InputListing(
-            string id,
+            string assetid,
             IReadOnlyDictionary<string, decimal> currencies,
             string details,
             int intent,
@@ -18,7 +18,7 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
             int? buyOut = null,
             int? promoted = null)
         {
-            this.Id = id;
+            this.Id = assetid;
             this.Item = item;
             this.Currencies = currencies;
             this.Details = details;
