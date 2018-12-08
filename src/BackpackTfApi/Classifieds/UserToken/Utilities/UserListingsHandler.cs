@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 
@@ -9,6 +10,14 @@ namespace BackpackTfApi.Classifieds.UserToken.Utilities
 {
     public static class UserListingsHandler
     {
+        /// <summary>
+        /// Create a new buy or sell listing.
+        /// </summary>
+        /// <param name="inputData"></param>
+        /// <param name="uri"></param>
+        /// <returns></returns> 
+        /// <exception cref="OutOfMemoryException"></exception>
+        /// <exception cref="IOException"></exception>
         public static ListingsCreator.Models.Response CreateListings(Input inputData, string uri)
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
@@ -27,6 +36,16 @@ namespace BackpackTfApi.Classifieds.UserToken.Utilities
             }
         }
 
+        /// <summary>
+        /// Fetches the listings of the user whoever's access token is provided in the URI.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="intent"></param>
+        /// <param name="inactive"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
         public static UserListings.Models.Response GetUserListings(string uri, int? intent = null, int? inactive = null)
         {
             var uriBuilder = new StringBuilder();
