@@ -22,7 +22,7 @@ namespace BackpackTfApi.Economy.SpecialItems
         [JsonProperty("item_description")]
         public string ItemDescription { get; internal set; }
 
-        [JsonProperty("tem_quality")]
+        [JsonProperty("item_quality")]
         public int ItemQuality { get; internal set; }
 
         [JsonProperty("min_ilevel")]
