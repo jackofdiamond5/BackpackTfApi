@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Net;
+using System.Text;
 using System.Collections.Generic;
-
 
 using BackpackTfApi.Economy.SpecialItems;
 using BackpackTfApi.Economy.Prices.Models;
 using BackpackTfApi.Economy.Currencies.Models;
+using BackpackTfApi.Economy.Currencies.Static;
 using BackpackTfApi.Economy.PriceHistory.Models;
 using BackpackTfApi.WebApiUsers.WebUsers.Models;
 using BackpackTfApi.SteamUser.UserInventory.Models;
@@ -13,7 +14,6 @@ using BackpackTfApi.WebApiUsers.WebImpersonatedUsers.Models;
 using BackpackTfApi.Classifieds.UserToken.UserListings.Models;
 using BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models;
 using BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models;
-using BackpackTfApi.Economy.Currencies.Static;
 
 namespace BackpackTfApi
 {
@@ -91,9 +91,34 @@ namespace BackpackTfApi
             return CurrenciesHandler.DownloadCurrencyData(uri.ToString());
         }
 
-        public PriceHistoryData GetPriceHistory(string baseItemName, string itemQuality)
+        /// <summary>
+        /// Returns the price history for the specified item.
+        /// </summary>
+        /// <param name="baseItemName"></param>
+        /// <param name="itemQuality"></param>
+        /// <param name="tradable"></param>
+        /// <param name="craftable"></param>
+        /// <param name="priceIndex"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="IndexOutOfRangeException"></exception>
+        public PriceHistoryData GetPriceHistory(string baseItemName, int itemQuality,
+            bool tradable = true, bool craftable = true, int priceIndex = 0)
         {
-            throw new NotImplementedException();
+            var isTradable = tradable ? "Tradable" : "Non-Tradable";
+            var isCraftable = craftable ? "Craftable" : "Non-Craftable";
+            var uriValue = this.BuildUri(BaseUris.GetPriceHistory,
+                this.ApiKey,
+                $"item={baseItemName}",
+                $"appid={BaseUris.AppId}",
+                $"tradable={isTradable}",
+                $"craftable={isCraftable}",
+                $"priceindex={priceIndex}",
+                $"quality={itemQuality}");
+
+            using (var client = new WebClient())
+                return PriceHistoryData.FromJson(client.DownloadString(uriValue));
         }
 
         public PricesData GetPrices(int? raw, long? lastUpdate)
@@ -150,6 +175,18 @@ namespace BackpackTfApi
             $"http://steamcommunity.com/inventory/{this.SteamId64}/{BaseUris.AppId}/2?l=english&count=5000";
 
             throw new NotImplementedException();
+        }
+
+        private string BuildUri(string baseUri, params string[] args)
+        {
+            var builder = new StringBuilder();
+            builder.Append(baseUri);
+            foreach (var arg in args)
+            {
+                builder.Append($"{arg}&");
+            }
+
+            return builder.ToString();
         }
     }
 }
