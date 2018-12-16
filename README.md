@@ -8,3 +8,17 @@
 - Provide simple ways of serialization and deserialization
 - Internally handle all API calls but also expose functionality for custom implementations
 - Offer simple ways of handling the various responses and transform them into .NET types
+
+# Its featurs include
+
+Custom Types 
+---
+|Type | Info |
+|:--------------------------|:------------------------|
+|..|..|
+
+Custon Utility Functions
+---
+|Function|Info|
+|:--------------------------|:------------------------|
+|..|..|
