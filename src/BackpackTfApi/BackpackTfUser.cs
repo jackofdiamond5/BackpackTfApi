@@ -136,7 +136,6 @@ namespace BackpackTfApi
                 this.ApiKey,
                 $"raw={raw}",
                 $"since={since}");
-
             using (var client = new WebClient())
                 return PricesData.FromJson(client.DownloadString(uriValue));
         }
@@ -154,14 +153,39 @@ namespace BackpackTfApi
                 return SpecialItemsData.FromJson(client.DownloadString(uri));
         }
 
+        /// <summary>
+        /// Fetch users data for an array of SteamId64-s.
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
         public WebUsersData GetUsersByIds(ICollection<string> ids)
         {
-            throw new NotImplementedException();
+            var uri = this.BuildUri(BaseUris.GetUsers,
+                this.ApiKey,
+                $"steamids={string.Join(',', ids)}");
+            using (var client = new WebClient())
+                return WebUsersData.FromJson(client.DownloadString(uri));
+
         }
 
-        public ImpersonatedUsersData GetImpersonatedUsers(int? limit, int? skip)
+        /// <summary>
+        /// Get impersonated users for a user's SteamId64.
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <param name="skip"></param>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        public ImpersonatedUsersData GetImpersonatedUsers(int limit = 0, int skip = 0)
         {
-            throw new NotImplementedException();
+            var uri = this.BuildUri(BaseUris.GetImpersonatedUsers,
+                this.ApiKey,
+                $"limit={limit}",
+                $"skip={skip}");
+            using (var client = new WebClient())
+                return ImpersonatedUsersData.FromJson(client.DownloadString(uri));
         }
 
         public ClassifiedsData GetClassifieds()
