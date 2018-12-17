@@ -121,10 +121,19 @@ namespace BackpackTfApi
                 return PriceHistoryData.FromJson(client.DownloadString(uriValue));
         }
 
+        /// <summary>
+        /// Fetches item prices for the specified API key. 
+        /// A request may be sent once every 60 seconds. 
+        /// </summary>
+        /// <param name="raw"></param>
+        /// <param name="since"></param>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
         public PricesData GetItemPrices(int raw = 0, int since = 0)
         {
             var uriValue = this.BuildUri(BaseUris.GetPrices,
-                $"{this.ApiKey}",
+                this.ApiKey,
                 $"raw={raw}",
                 $"since={since}");
 
@@ -132,9 +141,17 @@ namespace BackpackTfApi
                 return PricesData.FromJson(client.DownloadString(uriValue));
         }
 
+        /// <summary>
+        /// Gets special items for the specified API key.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
         public SpecialItemsData GetSpecialItems()
         {
-            throw new NotImplementedException();
+            var uri = this.BuildUri(BaseUris.GetSpecialItems, this.ApiKey, $"appid={BaseUris.AppId}");
+            using (var client = new WebClient())
+                return SpecialItemsData.FromJson(client.DownloadString(uri));
         }
 
         public WebUsersData GetUsersByIds(ICollection<string> ids)
