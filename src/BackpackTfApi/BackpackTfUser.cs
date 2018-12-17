@@ -188,14 +188,35 @@ namespace BackpackTfApi
                 return ImpersonatedUsersData.FromJson(client.DownloadString(uri));
         }
 
-        public ClassifiedsData GetClassifieds()
+        /// <summary>
+        /// Fetches all current classifieds that are on bacpkack.tf.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        public Classifieds.UserToken.ClassifiedsSearch.Models.Response GetClassifieds()
         {
-            throw new NotImplementedException();
+            var uri = this.BuildUri(BaseUris.ClassifiedsSearch, this.ApiKey);
+            using (var client = new WebClient())
+                return ClassifiedsData.FromJson(client.DownloadString(uri));
         }
 
-        public UserListingsData GetOwnClassifieds(int? intent, int? inactive)
+        /// <summary>
+        /// Fetches the current user's classifieds from backpack.tf.
+        /// </summary>
+        /// <param name="intent">0 - Buy Listings 1 - Sell Listings. Returns both if not set.</param>
+        /// <param name="inactive">0 - Include inactive listings. 1 - Skip inactive listings.</param>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        public Classifieds.UserToken.UserListings.Models.Response GetOwnClassifieds(int? intent = null, int inactive = 1)
         {
-            throw new NotImplementedException();
+            var uri = this.BuildUri(BaseUris.UserListings,
+                this.AccessToken,
+                $"intent={intent}",
+                $"inactive={inactive}");
+            using (var client = new WebClient())
+                return UserListingsData.FromJson(client.DownloadString(uri));
         }
 
         public OutputData CreateBuyListings(Input inputData)
