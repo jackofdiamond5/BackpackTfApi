@@ -100,7 +100,7 @@ namespace BackpackTfApi
         /// <param name="craftable"></param>
         /// <param name="priceIndex"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
         /// <exception cref="WebException"></exception>
         /// <exception cref="IndexOutOfRangeException"></exception>
         public PriceHistoryData GetPriceHistory(string baseItemName, int itemQuality,
@@ -121,9 +121,15 @@ namespace BackpackTfApi
                 return PriceHistoryData.FromJson(client.DownloadString(uriValue));
         }
 
-        public PricesData GetPrices(int? raw, long? lastUpdate)
+        public PricesData GetItemPrices(int raw = 0, int since = 0)
         {
-            throw new NotImplementedException();
+            var uriValue = this.BuildUri(BaseUris.GetPrices,
+                $"{this.ApiKey}",
+                $"raw={raw}",
+                $"since={since}");
+
+            using (var client = new WebClient())
+                return PricesData.FromJson(client.DownloadString(uriValue));
         }
 
         public SpecialItemsData GetSpecialItems()
@@ -186,7 +192,7 @@ namespace BackpackTfApi
                 builder.Append($"{arg}&");
             }
 
-            return builder.ToString();
+            return builder.ToString().TrimEnd('&');
         }
     }
 }
