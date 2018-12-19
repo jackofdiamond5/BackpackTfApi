@@ -229,21 +229,27 @@ namespace BackpackTfApi
             throw new NotImplementedException();
         }
 
-        public UserInventoryData GetUserInventory(string steamid64)
+        /// <summary>
+        /// Fetches the inventory of a user and converts it to e .NET type.
+        /// </summary>
+        /// <param name="steamid64"></param>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        public SteamUser.UserInventory.Models.Response GetUserInventory(string steamid64)
         {
             var userInventoryUri =
             $"http://steamcommunity.com/inventory/{steamid64}/{BaseUris.AppId}/2?l=english&count=5000";
-
-            throw new NotImplementedException();
+            return InventoryHandler.DownloadUserInventory(userInventoryUri);
         }
 
-        public UserInventoryData GetOwnInventory()
-        {
-            var userInventoryUri =
-            $"http://steamcommunity.com/inventory/{this.SteamId64}/{BaseUris.AppId}/2?l=english&count=5000";
-
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// Fetches the user's inventory and converts it to a .NET type.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        public SteamUser.UserInventory.Models.Response GetOwnInventory() => this.GetUserInventory(this.SteamId64);
 
         private string BuildUri(string baseUri, params string[] args)
         {
