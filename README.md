@@ -11,13 +11,13 @@
 
 # Its featurs include
 
-Custom Types 
+Types 
 ---
 |Type | Info |
 |:--------------------------|:------------------------|
 |..|..|
 
-Custon Utility Functions
+Utility Functions
 ---
 |Function|Info|
 |:--------------------------|:------------------------|
