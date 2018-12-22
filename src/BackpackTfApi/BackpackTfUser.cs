@@ -3,6 +3,8 @@ using System.Net;
 using System.Text;
 using System.Collections.Generic;
 
+using BackpackTfApi.Static;
+using BackpackTfApi.Exceptions;
 using BackpackTfApi.Economy.SpecialItems;
 using BackpackTfApi.Economy.Prices.Models;
 using BackpackTfApi.Economy.Currencies.Models;
@@ -10,6 +12,7 @@ using BackpackTfApi.Economy.Currencies.Static;
 using BackpackTfApi.Economy.PriceHistory.Models;
 using BackpackTfApi.WebApiUsers.WebUsers.Models;
 using BackpackTfApi.SteamUser.UserInventory.Models;
+using BackpackTfApi.Classifieds.UserToken.Utilities;
 using BackpackTfApi.WebApiUsers.WebImpersonatedUsers.Models;
 using BackpackTfApi.Classifieds.UserToken.UserListings.Models;
 using BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models;
@@ -23,11 +26,15 @@ namespace BackpackTfApi
         private string apiKey = "";
         private string accessToken = "";
 
+        private SteamUser.UserInventory.Models.Response userInventory = null;
+
         public BackpackTfUser(string steamid64, string apiKey, string accessToken)
         {
             this.SteamId64 = steamid64;
             this.ApiKey = apiKey;
             this.AccessToken = accessToken;
+
+            this.userInventory = this.GetOwnInventory();
         }
 
         /// <summary>
@@ -219,12 +226,46 @@ namespace BackpackTfApi
                 return UserListingsData.FromJson(client.DownloadString(uri));
         }
 
-        public OutputData CreateBuyListings(Input inputData)
+        /// <summary>
+        /// Creates a sell listing on backpack.tf.
+        /// </summary>
+        /// <param name="fullItemName">The item's full name and type- Unusual Larrikin Robin.</param>
+        /// <param name="currency">The currency name.</param>
+        /// <param name="price">The price for which the listing will be created.</param>
+        /// <param name="message">What to type in the message section of the listing.</param>
+        /// <returns></returns>
+        public Classifieds.UserToken.ListingsCreator.Models.Response CreateSellListing(
+            string fullItemName, string currency, decimal price, string message)
         {
-            throw new NotImplementedException();
+            Asset itemAsset = null;
+            try
+            {
+                itemAsset = InventoryHandler.GetItemAsset(this.userInventory, fullItemName);
+            }
+            catch (WebException)
+            {
+                throw new ItemNotFoundException(Messages.ItemNotFoundError);
+            }
+
+            var currencies = new Dictionary<string, decimal>
+            {
+                { currency, price }
+            };
+            var listings = new List<InputListing>
+            {
+                new InputListing(1, currencies, message, itemAsset.AssetId)
+            };
+
+            if (itemAsset != null)
+            {
+                var uri = this.BuildUri(BaseUris.ClassifiedsCreate, this.AccessToken);
+                return UserListingsHandler.CreateListings(new Input(listings), uri);
+            }
+
+            throw new ItemCreationFailureException($"Failed to create listing for item - {fullItemName}");
         }
 
-        public OutputData CreateSellListings(Input inputData)
+        public OutputData CreateBuyListing(Input inputData)
         {
             throw new NotImplementedException();
         }
@@ -249,7 +290,11 @@ namespace BackpackTfApi
         /// <returns></returns>
         /// <exception cref="WebException"></exception>
         /// <exception cref="NotSupportedException"></exception>
-        public SteamUser.UserInventory.Models.Response GetOwnInventory() => this.GetUserInventory(this.SteamId64);
+        public SteamUser.UserInventory.Models.Response GetOwnInventory()
+        {
+            this.userInventory = this.GetUserInventory(this.SteamId64);
+            return this.userInventory;
+        }
 
         private string BuildUri(string baseUri, params string[] args)
         {
