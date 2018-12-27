@@ -11,8 +11,7 @@
 
 # Its features include
 
-Endpoints
---
+## Endpoints
 |Name|Description
 |:---|:----|
 |WebAPI Economy|Item prices and currencies manager|
@@ -20,14 +19,12 @@ Endpoints
 |SteamUser|[Steam](https://store.steampowered.com) users manager|
 |UserToken Classifieds|Classifieds manager|
 
-Main Models 
----
+## Main Models 
 |Endpoint|Type | Info |
 |:--------------------------|:------------------------|:---|
-|WebAPI Economy|..|..|
+|..|..|..|
 
-Utility Classes
----
+## Utility Classes
 |Endpoint|Name|Info|
 |:-----|:--------------------------|:------------------------|
 |..|..|..|
