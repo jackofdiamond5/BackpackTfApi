@@ -12,11 +12,11 @@ using BackpackTfApi.Economy.Currencies.Static;
 using BackpackTfApi.Economy.PriceHistory.Models;
 using BackpackTfApi.WebApiUsers.WebUsers.Models;
 using BackpackTfApi.SteamUser.UserInventory.Models;
-using BackpackTfApi.Classifieds.UserToken.Utilities;
+using BackpackTfApi.UserToken.Classifieds.Utilities;
 using BackpackTfApi.WebApiUsers.WebImpersonatedUsers.Models;
-using BackpackTfApi.Classifieds.UserToken.UserListings.Models;
-using BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models;
-using BackpackTfApi.Classifieds.UserToken.ClassifiedsSearch.Models;
+using BackpackTfApi.UserToken.Classifieds.UserListings.Models;
+using BackpackTfApi.UserToken.Classifieds.ListingsCreator.Models;
+using BackpackTfApi.UserToken.Classifieds.ClassifiedsSearch.Models;
 
 namespace BackpackTfApi
 {
@@ -201,7 +201,7 @@ namespace BackpackTfApi
         /// <returns></returns>
         /// <exception cref="WebException"></exception>
         /// <exception cref="NotSupportedException"></exception>
-        public Classifieds.UserToken.ClassifiedsSearch.Models.Response GetClassifieds()
+        public UserToken.Classifieds.ClassifiedsSearch.Models.Response GetClassifieds()
         {
             var uri = this.BuildUri(BaseUris.ClassifiedsSearch, this.ApiKey);
             using (var client = new WebClient())
@@ -216,7 +216,7 @@ namespace BackpackTfApi
         /// <returns></returns>
         /// <exception cref="WebException"></exception>
         /// <exception cref="NotSupportedException"></exception>
-        public Classifieds.UserToken.UserListings.Models.Response GetOwnClassifieds(int? intent = null, int inactive = 1)
+        public UserToken.Classifieds.UserListings.Models.Response GetOwnClassifieds(int? intent = null, int inactive = 1)
         {
             var uri = this.BuildUri(BaseUris.UserListings,
                 this.AccessToken,
@@ -237,7 +237,7 @@ namespace BackpackTfApi
         /// <exception cref="ItemNotFoundException"></exception>
         /// <exception cref="ItemCreationFailureException"></exception>
         /// <returns></returns>
-        public Classifieds.UserToken.ListingsCreator.Models.Response CreateSellListing(
+        public UserToken.Classifieds.ListingsCreator.Models.Response CreateSellListing(
             string fullItemName, string currency, decimal price, string message)
         {
             Asset itemAsset = null;
@@ -279,7 +279,7 @@ namespace BackpackTfApi
         /// <param name="message">The text that will be typed in the message section of the listing.</param>
         /// <exception cref="ItemCreationFailureException"></exception>
         /// <returns></returns>
-        public Classifieds.UserToken.ListingsCreator.Models.Response CreateBuyListing(
+        public UserToken.Classifieds.ListingsCreator.Models.Response CreateBuyListing(
             string fullItemName, string qualityIndex, string currency, decimal price, string message)
         {
             var item = new ListingItem(fullItemName, qualityIndex);
