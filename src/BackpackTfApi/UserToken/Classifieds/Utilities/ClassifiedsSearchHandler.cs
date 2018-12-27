@@ -3,7 +3,7 @@ using System.Net;
 using System.Linq;
 using System.Collections.Generic;
 
-using BackpackTfApi.Classifieds.Templates;
+using BackpackTfApi.UserToken.Classifieds.Templates;
 using BackpackTfApi.UserToken.Classifieds.ClassifiedsSearch.Models;
 
 namespace BackpackTfApi.UserToken.Classifieds.Utilities

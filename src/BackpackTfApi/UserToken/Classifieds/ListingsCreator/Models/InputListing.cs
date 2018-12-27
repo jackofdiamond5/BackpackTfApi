@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-using BackpackTfApi.Classifieds.Templates;
+using BackpackTfApi.UserToken.Classifieds.Templates;
 
 namespace BackpackTfApi.UserToken.Classifieds.ListingsCreator.Models
 {

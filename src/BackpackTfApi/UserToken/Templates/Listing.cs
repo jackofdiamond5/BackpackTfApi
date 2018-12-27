@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 using BackpackTfApi.UserToken.Classifieds.ClassifiedsSearch.Models;
 
-namespace BackpackTfApi.Classifieds.Templates
+namespace BackpackTfApi.UserToken.Classifieds.Templates
 {
     public abstract class Listing
     {
