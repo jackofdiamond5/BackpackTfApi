@@ -11,7 +11,7 @@ namespace BackpackTfApi.Classifieds.UserToken.Utilities
     public static class UserListingsHandler
     {
         /// <summary>
-        /// Create a new buy or sell listing.
+        /// Creates a new buy or sell listings.
         /// </summary>
         /// <param name="inputData"></param>
         /// <param name="uri"></param>
@@ -37,7 +37,7 @@ namespace BackpackTfApi.Classifieds.UserToken.Utilities
         }
 
         /// <summary>
-        /// Fetches the listings of the user whoever's access token is provided in the URI.
+        /// Fetches the listings of a specific user and converts them to a .NET type.
         /// </summary>
         /// <param name="uri"></param>
         /// <param name="intent"></param>

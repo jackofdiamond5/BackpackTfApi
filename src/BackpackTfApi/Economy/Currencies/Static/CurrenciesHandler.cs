@@ -13,6 +13,9 @@ namespace BackpackTfApi.Economy.Currencies.Static
         /// </summary>
         /// <param name="uri"></param>
         /// <returns></returns>
+        /// <exception cref="WebException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
         public static CurrenciesData DownloadCurrencyData(string uri)
         {
             using (var client = new WebClient())

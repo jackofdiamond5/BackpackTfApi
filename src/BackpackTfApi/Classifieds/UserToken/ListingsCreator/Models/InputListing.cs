@@ -18,7 +18,7 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
             int? buyOut = null,
             int? promoted = null)
         {
-            this.Id = assetid;
+            this.AssetId = assetid;
             this.Item = item;
             this.Currencies = currencies;
             this.Details = details;
@@ -28,9 +28,12 @@ namespace BackpackTfApi.Classifieds.UserToken.ListingsCreator.Models
             this.Intent = intent;
         }
 
-        [JsonProperty("promoted")]
+        [JsonProperty("promoted", NullValueHandling = NullValueHandling.Ignore)]
         public int? Promoted { get; internal set; }
 
+        /// <summary>
+        /// Used for Buy Listings.
+        /// </summary>
         [JsonProperty("item")]
         public new ListingItem Item { get; internal set; }
     }
