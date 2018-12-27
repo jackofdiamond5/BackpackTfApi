@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>BackpackTfApi</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company />
+    <Description>A set of models and utility functions to communicate with the varios APIs on backpack.tf.
+It exposes functionality for manipulating the user's profile and their classifieds. It also connects to the Steam inventory service API to fetch items.</Description>
+    <RepositoryUrl>https://github.com/jackofdiamond5/BackpackTfApi</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/jackofdiamond5/BackpackTfApi/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType />
+    <PackageTags>backpack tf2 team fortress 2 tf</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
