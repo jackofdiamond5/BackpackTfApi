@@ -229,10 +229,13 @@ namespace BackpackTfApi
         /// <summary>
         /// Creates a sell listing on backpack.tf.
         /// </summary>
-        /// <param name="fullItemName">The item's full name and type- Unusual Larrikin Robin.</param>
-        /// <param name="currency">The currency name.</param>
+        /// <param name="fullItemName">The item's full name and type - Unusual Larrikin Robin. 
+        /// Can also be its defindex.</param>
+        /// <param name="currency">The currency type.</param>
         /// <param name="price">The price for which the listing will be created.</param>
-        /// <param name="message">What to type in the message section of the listing.</param>
+        /// <param name="message">The text that will be typed in the message section of the listing.</param>
+        /// <exception cref="ItemNotFoundException"></exception>
+        /// <exception cref="ItemCreationFailureException"></exception>
         /// <returns></returns>
         public Classifieds.UserToken.ListingsCreator.Models.Response CreateSellListing(
             string fullItemName, string currency, decimal price, string message)
@@ -265,9 +268,37 @@ namespace BackpackTfApi
             throw new ItemCreationFailureException($"Failed to create listing for item - {fullItemName}");
         }
 
-        public OutputData CreateBuyListing(Input inputData)
+        /// <summary>
+        /// Creates a buy listing on backpack.tf.
+        /// </summary>
+        /// <param name="fullItemName">The item's full name and type - Unusual Larrikin Robin. 
+        /// Can also be its defindex.</param>
+        /// <param name="qualityIndex">Quality name or index of the item.</param>
+        /// <param name="currency">The currency type.</param>
+        /// <param name="price">The price for which the listing will be created.</param>
+        /// <param name="message">The text that will be typed in the message section of the listing.</param>
+        /// <exception cref="ItemCreationFailureException"></exception>
+        /// <returns></returns>
+        public Classifieds.UserToken.ListingsCreator.Models.Response CreateBuyListing(
+            string fullItemName, string qualityIndex, string currency, decimal price, string message)
         {
-            throw new NotImplementedException();
+            var item = new ListingItem(fullItemName, qualityIndex);
+            var currencies = new Dictionary<string, decimal>
+            {
+                { currency, price }
+            };
+            var listings = new List<InputListing>()
+            {
+                new InputListing(0, currencies, message, null, item)
+            };
+
+            if (listings.Count > 0)
+            {
+                var uri = this.BuildUri(BaseUris.ClassifiedsCreate, this.AccessToken);
+                return UserListingsHandler.CreateListings(new Input(listings), uri);
+            }
+
+            throw new ItemCreationFailureException($"Failed to create listing for item - {fullItemName}");
         }
 
         /// <summary>
