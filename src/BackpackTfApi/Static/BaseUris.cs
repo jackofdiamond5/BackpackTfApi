@@ -1,4 +1,4 @@
-﻿namespace BackpackTfApi
+﻿namespace BackpackTfApi.Static
 {
     public static class BaseUris
     {
