@@ -9,16 +9,25 @@
 - Internally handle all API calls but also expose functionality for custom implementations
 - Offer simple ways of handling the various responses and transform them into .NET types
 
-# Its featurs include
+# Its features include
 
-Types 
----
-|Type | Info |
-|:--------------------------|:------------------------|
-|..|..|
+Endpoints
+--
+|Name|Description
+|:---|:----|
+|WebAPI Economy|Item prices and currencies manager|
+|WebAPI Users|[backpack.tf](https://backpack.tf) users manager|
+|SteamUser|[Steam](https://store.steampowered.com) users manager|
+|UserToken Classifieds|Classifieds manager|
 
-Utility Functions
+Main Models 
 ---
-|Function|Info|
-|:--------------------------|:------------------------|
-|..|..|
+|Endpoint|Type | Info |
+|:--------------------------|:------------------------|:---|
+|WebAPI Economy|..|..|
+
+Utility Classes
+---
+|Endpoint|Name|Info|
+|:-----|:--------------------------|:------------------------|
+|..|..|..|
