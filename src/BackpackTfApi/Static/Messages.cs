@@ -15,5 +15,7 @@
         public const string CurrencyNotFoundError = "Cannot resolve currency name.";
 
         public const string ResponseNullError = "Cannot resolve \"response\" argument.";
+
+        public const string InventoryNullError = "The user's inventory cannot be null.";
     }
 }

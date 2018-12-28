@@ -196,7 +196,7 @@ namespace BackpackTfApi
         }
 
         /// <summary>
-        /// Fetches all current classifieds that are on bacpkack.tf.
+        /// Fetches all currently opened classifieds that are on bacpkack.tf.
         /// </summary>
         /// <returns></returns>
         /// <exception cref="WebException"></exception>
@@ -209,7 +209,7 @@ namespace BackpackTfApi
         }
 
         /// <summary>
-        /// Fetches the current user's classifieds from backpack.tf.
+        /// Fetches the currently opened user's classifieds from backpack.tf.
         /// </summary>
         /// <param name="intent">0 - Buy Listings 1 - Sell Listings. Returns both if not set.</param>
         /// <param name="inactive">0 - Include inactive listings. 1 - Skip inactive listings.</param>
@@ -227,7 +227,7 @@ namespace BackpackTfApi
         }
 
         /// <summary>
-        /// Creates a sell listing on backpack.tf.
+        /// Creates a sell listing / classified on backpack.tf.
         /// </summary>
         /// <param name="fullItemName">The item's full name and type - Unusual Larrikin Robin. 
         /// Can also be its defindex.</param>
@@ -269,7 +269,7 @@ namespace BackpackTfApi
         }
 
         /// <summary>
-        /// Creates a buy listing on backpack.tf.
+        /// Creates a buy listing / classified on backpack.tf.
         /// </summary>
         /// <param name="fullItemName">The item's full name and type - Unusual Larrikin Robin. 
         /// Can also be its defindex.</param>
@@ -302,7 +302,7 @@ namespace BackpackTfApi
         }
 
         /// <summary>
-        /// Fetches the inventory of a user and converts it to e .NET type.
+        /// Fetches a user's inventory.
         /// </summary>
         /// <param name="steamid64"></param>
         /// <returns></returns>
@@ -316,7 +316,7 @@ namespace BackpackTfApi
         }
 
         /// <summary>
-        /// Fetches the user's inventory and converts it to a .NET type.
+        /// Fetches the current user's inventory.
         /// </summary>
         /// <returns></returns>
         /// <exception cref="WebException"></exception>
@@ -325,6 +325,31 @@ namespace BackpackTfApi
         {
             this.userInventory = this.GetUserInventory(this.SteamId64);
             return this.userInventory;
+        }
+
+        /// <summary>
+        /// Searches for an item in the user's inventory and returns its Asset and Description models.
+        /// </summary>
+        /// <param name="itemName"></param>
+        /// <returns></returns>
+        /// <exception cref="ItemNotFoundException"></exception>
+        /// <exception cref="InventoryNullException"></exception>
+        public InventoryItem GetItemFromInventory(string itemName)
+        {
+            if (this.userInventory == null)
+            {
+                throw new InventoryNullException(Messages.InventoryNullError);
+            }
+
+            var itemAsset = InventoryHandler.GetItemAsset(this.userInventory, itemName);
+            var itemDescription = InventoryHandler.GetItemDescription(this.userInventory, itemName);
+
+            if (itemAsset == null || itemDescription == null)
+            {
+                throw new ItemNotFoundException(Messages.ItemNotFoundError);
+            }
+
+            return new InventoryItem(itemAsset, itemDescription);
         }
 
         private string BuildUri(string baseUri, params string[] args)
