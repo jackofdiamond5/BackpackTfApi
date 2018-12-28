@@ -3,7 +3,7 @@ mono: none
 os: linux
 dist: trusty
 dotnet: 2.0.0
-script: dotnet nuget push src/BackpackTfApi/bin/Release/BackpackTfApi.***.nupkg --api-key NUGET_API_KEY
+script: dotnet nuget push bin/Release/BackpackTfApi.***.nupkg --api-key NUGET_API_KEY
 deploy: 
 skip_cleanup: true
 provider: script
