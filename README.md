@@ -30,16 +30,21 @@
 |WebAPI Users|WebImpersonatedUsers|Contains models for impersinated users at [backpack.tf](https://backpack.tf)
 |SteamUser|UserInventory|Handles calls to [Steam](https://store.steampowered.com)'s inventory API endpoint. 
 |UserToken|ClassifiedsSearch|Models for searching [backpack.tf](https://backpack.tf) classifieds.
-|UserToken|ListingsCreator|Models for handling input and response while creating classifieds.
+|UserToken|ListingsCreator|Models for handling input and response when creating classifieds.
 |UserToken|UserListings|Models for searching a specific user's classifieds.
 |UserToken|Users|Models containing information about a specific user.
 
 ## Utilities
-|Handler|Class|Info|
-|:-----|:--------------------------|:------------------------|
-|..|..|..|
+|Handler|Endpoint|Utility|Description
+|:-----|:--------------------------|:------------------------|:--|
+|WebAPI Economy|Currencies|CurrenciesHandler|Exposes static methods for handling the Currencies endpoint.
+|WebAPI Economy|Prices|ItemsHandler|Exposes static methods for navigating the Prices endpoint.
+|SteamUser|UserInventory|InventoryHandler|Exposes static methods for fetching data such as asset and/or description objects from the UserInventory endpoint.
+|UserToken|ClassifiedsSearch|ClassifiedsSearchHandler|Exposes static methods for obtaining classifieds information from the ClassifiedsSearch endpoint.
+|UserToken|UserListings, ListingsCreator|UserListingsHandler|Exposes static methods for creating and searching for a user's classifieds.
+|UserToken|Users|UsersDataHandler|Exposes static functions for navigating the Users endpoint.
 
-# Main User Model
+## Main User Model
 
 
 ## Examples
