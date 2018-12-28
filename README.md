@@ -1,3 +1,5 @@
+[![NuGetVersion](https://img.shields.io/nuget/v/BackpackTfApi.svg)](https://www.nuget.org/packages/BackpackWebAPI)
+
 # Backpack.Tf Api
 
 
