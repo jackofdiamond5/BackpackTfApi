@@ -62,7 +62,33 @@
 |GetOwnClassifieds|Method|Fetches the currently opened user's classifieds from [backpack.tf](https://backpack.tf)
 |CreateSellListing|Method|Creates a sell listing / classified on [backpack.tf](https://backpack.tf)
 |CreateBuyListing|Method|Creates a buy listing / classified on [backpack.tf](https://backpack.tf)
-|GetUserInventory|Method|Fetches the inventory of a user.
+|GetUserInventory|Method|Fetches a user's inventory.
+|GetOwnInventory|Method|Fetches the current user's inventory.
 
+## Custom Exceptions
+|Name|Description
+|:--|:--|
+|ItemCreationFailureException|Thrown when something internally prevented the item from being created. If  [backpack.tf](https://backpack.tf) declined the creation of the classified, the exception is not thrown.
+|ItemNotFoundException|Thrown if an item could not be located. It is currently used mainly for the user's inventory.
 
-## Examples
+# Examples
+```c#
+// Instantiate the main user model
+var bptfUser = new BackpackTfUser("mySteamId64", "myBackpackTfApiKey", "myBackpackTfAccessToken");
+ 
+// See your own listings
+var myOpenClassifieds = bptfUser.GetOwnClassifieds();
+
+// See your inventory
+// The returned Response object will contain all items in your inventory.
+var myInventory = bptfUser.GetOwnInventory();
+
+// Get an item's Asset Id
+var targetItem = InventoryHandler.GetItemAsset(myInventory, "Madame Dixie")
+
+// Create a new sell classified
+// The returned Response object will contain information on whether the classified was successfully created or not.
+// NOTE: You must have the item in your inventory or else ItemNotFoundException is thrown
+var response = bptfUser.CreateSellListing("Madame Dixie", "metal", 5, "I want to sell this item! :)")
+```
+
