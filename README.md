@@ -30,16 +30,68 @@
 |WebAPI Users|WebImpersonatedUsers|Contains models for impersinated users at [backpack.tf](https://backpack.tf)
 |SteamUser|UserInventory|Handles calls to [Steam](https://store.steampowered.com)'s inventory API endpoint. 
 |UserToken|ClassifiedsSearch|Models for searching [backpack.tf](https://backpack.tf) classifieds.
-|UserToken|ListingsCreator|Models for handling input and response while creating classifieds.
+|UserToken|ListingsCreator|Models for handling input and response when creating classifieds.
 |UserToken|UserListings|Models for searching a specific user's classifieds.
 |UserToken|Users|Models containing information about a specific user.
 
 ## Utilities
-|Handler|Class|Info|
-|:-----|:--------------------------|:------------------------|
-|..|..|..|
+|Handler|Endpoint|Utility|Description
+|:-----|:--------------------------|:------------------------|:--|
+|WebAPI Economy|Currencies|CurrenciesHandler|Exposes static methods for handling the Currencies endpoint.
+|WebAPI Economy|Prices|ItemsHandler|Exposes static methods for navigating the Prices endpoint.
+|SteamUser|UserInventory|InventoryHandler|Exposes static methods for fetching data such as asset and/or description objects from the UserInventory endpoint.
+|UserToken|ClassifiedsSearch|ClassifiedsSearchHandler|Exposes static methods for obtaining classifieds information from the ClassifiedsSearch endpoint.
+|UserToken|UserListings, ListingsCreator|UserListingsHandler|Exposes static methods for creating and searching for a user's classifieds.
+|UserToken|Users|UsersDataHandler|Exposes static functions for navigating the Users endpoint.
 
-# Main User Model
+## Main User Model
+- The main user model is intended to be the entry point for all API calls.
 
+|Member Name|Type|Description
+|:---|:----|:--|
+|SteamId64|Property|The steam id associated with a steam account.
+|ApiKey|Property|The API key prvided by [backpack.tf](https://backpack.tf)
+|AccessToken|Property|The access token provided by [backpack.tf](https://backpack.tf)
+|GetCurrencies|Method|Returns internal currency data for Team Fortress 2|
+|GetPriceHistory|Method|Returns price history for the specified item.
+|GetItemPrices|Method|Fetches item prices for the specified API key. A request may be sent once every 60 seconds.
+|GetSpecialitems|Method|Gets special items for the specified API key.
+|GetUsersByIds|Method|Fetch users data for an array of SteamId64-s.
+|GetImpersonatedUsers|Method|Get impersonated users for a user's SteamId64.
+|GetClassifieds|Method|Fetches all currently open classifieds that are on [backpack.tf](https://backpack.tf)
+|GetOwnClassifieds|Method|Fetches the currently opened user's classifieds from [backpack.tf](https://backpack.tf)
+|CreateSellListing|Method|Creates a sell listing / classified on [backpack.tf](https://backpack.tf)
+|CreateBuyListing|Method|Creates a buy listing / classified on [backpack.tf](https://backpack.tf)
+|GetUserInventory|Method|Fetches a user's inventory.
+|GetOwnInventory|Method|Fetches the current user's inventory.
+|GetItemFromInventory|Method|Searches for an item in the user's inventory and returns its Asset and Description models.
 
-## Examples
+## Custom Exceptions
+|Name|Description
+|:--|:--|
+|ItemCreationFailureException|Thrown when something internally prevented the item from being created. If  [backpack.tf](https://backpack.tf) declined the creation of the classified, the exception is not thrown.
+|ItemNotFoundException|Thrown if an item could not be located. It is currently used mainly for the user's inventory.
+|InventoryNullException|Thrown if GetItemFromInventory is called when the user's inventory is null.
+
+# Examples
+```c#
+// Instantiate the main user model
+var bptfUser = new BackpackTfUser("mySteamId64", "myBackpackTfApiKey", "myBackpackTfAccessToken");
+ 
+// See your own listings
+var myOpenClassifieds = bptfUser.GetOwnClassifieds();
+
+// See your inventory
+// The returned Response object will contain all items in your inventory.
+var myInventory = bptfUser.GetOwnInventory();
+
+// Get an item from your inventory
+// The returned InventoryItem object contains the item's Asset and Description models.
+var targetItem = bptfUser.GetItemFromInventory("Madame Dixie");
+
+// Create a new sell classified
+// The returned Response object will contain information on whether the classified was successfully created or not.
+// NOTE: You must have the item in your inventory or else ItemNotFoundException is thrown
+var response = bptfUser.CreateSellListing("Madame Dixie", "metal", 5, "I want to sell this item! :)")
+```
+
