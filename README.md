@@ -45,6 +45,24 @@
 |UserToken|Users|UsersDataHandler|Exposes static functions for navigating the Users endpoint.
 
 ## Main User Model
+- The main user model is intended to be the entry point for all API calls.
+
+|Member Name|Type|Description
+|:---|:----|:--|
+|SteamId64|Property|The steam id associated with a steam account.
+|ApiKey|Property|The API key prvided by [backpack.tf](https://backpack.tf)
+|AccessToken|Property|The access token provided by [backpack.tf](https://backpack.tf)
+|GetCurrencies|Method|Returns internal currency data for Team Fortress 2|
+|GetPriceHistory|Method|Returns price history for the specified item.
+|GetItemPrices|Method|Fetches item prices for the specified API key. A request may be sent once every 60 seconds.
+|GetSpecialitems|Method|Gets special items for the specified API key.
+|GetUsersByIds|Method|Fetch users data for an array of SteamId64-s.
+|GetImpersonatedUsers|Method|Get impersonated users for a user's SteamId64.
+|GetClassifieds|Method|Fetches all currently open classifieds that are on [backpack.tf](https://backpack.tf)
+|GetOwnClassifieds|Method|Fetches the currently opened user's classifieds from [backpack.tf](https://backpack.tf)
+|CreateSellListing|Method|Creates a sell listing / classified on [backpack.tf](https://backpack.tf)
+|CreateBuyListing|Method|Creates a buy listing / classified on [backpack.tf](https://backpack.tf)
+|GetUserInventory|Method|Fetches the inventory of a user.
 
 
 ## Examples
