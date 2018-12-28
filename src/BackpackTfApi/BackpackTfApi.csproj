@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+	<Title>BackpackTfApi</Title>
+	<Summary>A set of models and utility functions to communicate with the various APIs on backpack.tf.</Summary>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>BackpackTfApi</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company></Company>
-    <Description>A set of models and utility functions to communicate with the varios APIs on backpack.tf.</Description>
+    <Description>A set of models and utility functions to communicate with the various APIs on backpack.tf.</Description>
     <RepositoryUrl>https://github.com/jackofdiamond5/BackpackTfApi</RepositoryUrl>
     <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
     <RepositoryType />
