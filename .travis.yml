@@ -3,13 +3,17 @@ mono: none
 os: linux
 dist: trusty
 dotnet: 2.0.0
-script: dotnet nuget push bin/Release/BackpackTfApi.***.nupkg --api-key NUGET_API_KEY
+script:
+- dotnet build -c Release
+- dotnet test
+- dotnet pack -c Release
 deploy: 
-skip_cleanup: true
-provider: script
-true:
-  tags: true
-  condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
-env:
-  global:
-  - secure: byd0i13gxluHqmXwYTNGbRJ1Ay0kk4ak+vq5rtgKazKG8zgMosWUk5J2N0sG0Kn33Qvr1upr06dYFpWwgjQSSOtzf84aL4rdMrOk8ovy5h/fw1xKk+iAFTSBL9Cuye1Jye0EiaHkTmmECkIfXk0FiwgRkMK04coC47FgbCCxnX1jJXEoOX4dYHifdH0jEsM5VwOH73a3p/oeizu6/kqyfQb0EZNivrk0T1Arw0LXrOa1UWgibMDTh1t+aXO4KcLccCseqJfeMteLC1LSWjJYYsLQA8ccHwrwWIrm2L4OnPk1DtnP+1oeedffNDvlSBPflfwG/Z83vH0GmSLnuRXPMRA5HuIvv7Bgxt/xnqai6y6eivPzwhmV0r3XTJa6zspsaRImX8dDtv0jgcptaeETc1CaPLu1rVlTF8rtfRhzVBv0/nceOqF1shOwKZoJB1/TctSCJ5Og85sQdfj2EIvVu6Vb6Y9AY1mGjEGuh5SF8YMo34YSfy+rlENyTZWWW9Uk2PYv7s2wXdEGVGFJj1PQOVPf3ozZLKuLjCUdoYvqmcDvBby/uwtKopoLCubajspHTfYtyrw+haICo2rNp0Q3RLC4ouNnNykByb0+RaZKIeyAoERpTFND5f7SanywNWlZqNx3uxK+brRQf3gCtWplfyfwVlqvaH0gyLCOW6lsfTA=
+    skip_cleanup: true
+    provider: script
+    script: dotnet nuget push src/BackpackTfApi/bin/Release/BackpackTfApi.***.nupkg --api-key NUGET_API_KEY
+    on:
+      tags: true
+      condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
+    env:
+      global:
+      - secure: byd0i13gxluHqmXwYTNGbRJ1Ay0kk4ak+vq5rtgKazKG8zgMosWUk5J2N0sG0Kn33Qvr1upr06dYFpWwgjQSSOtzf84aL4rdMrOk8ovy5h/fw1xKk+iAFTSBL9Cuye1Jye0EiaHkTmmECkIfXk0FiwgRkMK04coC47FgbCCxnX1jJXEoOX4dYHifdH0jEsM5VwOH73a3p/oeizu6/kqyfQb0EZNivrk0T1Arw0LXrOa1UWgibMDTh1t+aXO4KcLccCseqJfeMteLC1LSWjJYYsLQA8ccHwrwWIrm2L4OnPk1DtnP+1oeedffNDvlSBPflfwG/Z83vH0GmSLnuRXPMRA5HuIvv7Bgxt/xnqai6y6eivPzwhmV0r3XTJa6zspsaRImX8dDtv0jgcptaeETc1CaPLu1rVlTF8rtfRhzVBv0/nceOqF1shOwKZoJB1/TctSCJ5Og85sQdfj2EIvVu6Vb6Y9AY1mGjEGuh5SF8YMo34YSfy+rlENyTZWWW9Uk2PYv7s2wXdEGVGFJj1PQOVPf3ozZLKuLjCUdoYvqmcDvBby/uwtKopoLCubajspHTfYtyrw+haICo2rNp0Q3RLC4ouNnNykByb0+RaZKIeyAoERpTFND5f7SanywNWlZqNx3uxK+brRQf3gCtWplfyfwVlqvaH0gyLCOW6lsfTA=
