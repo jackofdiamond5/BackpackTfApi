@@ -3,8 +3,7 @@ mono: none
 os: linux
 dist: trusty
 dotnet: 2.0.0
-script: dotnet nuget push src/BackpackTfApi/bin/Release/BackpackTfApi.*.nupkg --api-key
-  $NUGET_API_KEY
+script: dotnet nuget push src/BackpackTfApi/bin/Release/BackpackTfApi.*.nupkg --api-key NUGET_API_KEY
 deploy: 
 skip_cleanup: true
 provider: script
@@ -13,4 +12,4 @@ true:
   condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
 env:
   global:
-  - secure: FUNvCTnfm19p0t23Cs+N88izONQjOiQAb5h9WsX0svF6fo/wPFNIn+wAmu+BJapPKtbVAd3TcAZ/e84okPFNJIVDcIiE/dfGBpoP2pS6XMA5SjZM1mSDTK+CTA4DzYTT4UFojpcX3ON3ZtX2ohggUxlsmFHqIZ6yQLrd6f7kZg2EiQdwy7uxuVe8lqBduO1wdWnCDXiRVxUQxC1e7uvjNv4YhgmERXMecZdgc+r1x4dGF36AxeiOOxNnvK7Mu7JwVnkiU++s//lG6uHBPDzv3boZ5DTXQLqY0OC74Oy3P7vaGJxGws7yVl49Ys/bp8gTQ3vCCjCGPxOvpSe/VwRTqUhG9MFhlCFMMmPKO2GGsm+cJtd/8rMTKzvYP/ACIxkh0VGEd9JkDy28KeoC7EwchnJcwsOe4P3aIr66lN6Ut6NrRNA9lJGwhKNabsu1RqtNkyUc35zWK76+tyfcmODZelhxH7lGiruTBZ0d0dIsDhWWoRW7Kan+CYHY07/hKJfFbAxuR0caHiVozqeyom0n1uQn42DNbWw4nJrG6JbmYzPdWjJlLmCIPrCkxEnZs6PzyI0wk8nvXaSMQ6RBxTZSfK4e/JS+Xc3WIuMpV2iZk7koXZ0vsII7imBK8xvHhlmirVc0+6K57oHFftALGX4u+kQ5G4l5QsJU3aZnzvzN/pE=
+  - secure: byd0i13gxluHqmXwYTNGbRJ1Ay0kk4ak+vq5rtgKazKG8zgMosWUk5J2N0sG0Kn33Qvr1upr06dYFpWwgjQSSOtzf84aL4rdMrOk8ovy5h/fw1xKk+iAFTSBL9Cuye1Jye0EiaHkTmmECkIfXk0FiwgRkMK04coC47FgbCCxnX1jJXEoOX4dYHifdH0jEsM5VwOH73a3p/oeizu6/kqyfQb0EZNivrk0T1Arw0LXrOa1UWgibMDTh1t+aXO4KcLccCseqJfeMteLC1LSWjJYYsLQA8ccHwrwWIrm2L4OnPk1DtnP+1oeedffNDvlSBPflfwG/Z83vH0GmSLnuRXPMRA5HuIvv7Bgxt/xnqai6y6eivPzwhmV0r3XTJa6zspsaRImX8dDtv0jgcptaeETc1CaPLu1rVlTF8rtfRhzVBv0/nceOqF1shOwKZoJB1/TctSCJ5Og85sQdfj2EIvVu6Vb6Y9AY1mGjEGuh5SF8YMo34YSfy+rlENyTZWWW9Uk2PYv7s2wXdEGVGFJj1PQOVPf3ozZLKuLjCUdoYvqmcDvBby/uwtKopoLCubajspHTfYtyrw+haICo2rNp0Q3RLC4ouNnNykByb0+RaZKIeyAoERpTFND5f7SanywNWlZqNx3uxK+brRQf3gCtWplfyfwVlqvaH0gyLCOW6lsfTA=
