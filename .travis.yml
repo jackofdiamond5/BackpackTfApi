@@ -1,0 +1,16 @@
+language: csharp
+mono: none
+os: linux
+dist: trusty
+dotnet: 2.0.0
+script: dotnet nuget push src/BackpackTfApi/bin/Release/BackpackTfApi.*.nupkg --api-key
+  $NUGET_API_KEY
+deploy: 
+skip_cleanup: true
+provider: script
+true:
+  tags: true
+  condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
+env:
+  global:
+    secure: FZdjip84yMpXp6CqeEIXrDdg6c+mNNYT/YK/zLUBHrIGxPPM9Jp+UXQM6nqezzEcuSg5K5wccylbqwTj1RC2n/on31viMih1AjmsRTTlJDCVGBBFmboAvzK+QHAZ6qyNBnNhdu/IVv3CsbDYHx5ddoNvwZDntbeuyFQe/FQrm6ifGRBetZcXVoQN92ppv9NTRR50+1ds5bMXlm9HlFhegiv8UV3sETONO+BKlc5WhynCGnoADsvPn+osDLIgMDOLyw5Xv0j+fEdzeodAsay+uDQc1vKQWBMPyGTM5YQFRJGB2komsaKWxqqxxakThle8bChqmAgdB++s8z9YEQgCkcHDwcGESP0Q/lekdy1CcWONSvVAvYP6oikji79p9w2as+vaa/WUSxwSawdgmDVuW6DRBl3tuF7lUfuEw1xF86VhEJ+l5nGt60sdqKlYakcs+EErxJIEG55WSOYhUhHZTYM5PwtxXCdHnGEbUw/zl+/J7Coo4oP0vjPHt3Z6nU29Qe39QyOMkJjl1eDKSBHlx1g1X/h9UzGdEHQ8/dqTshWD8qiRmzzITD5fAoOR5mdnoJy1yO//3oWiu6RhcrTJfkaNWHzw1a1sOReyBcWA1ne2mjToOndf9t25NLluGIDbex9HJBuDu8rD4ghoVih68yrkK48Cjnsz4A31Kw9u8Po=
