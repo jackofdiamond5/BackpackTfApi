@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 /src/Test
 /src/*.json
+/src/*.xml
