@@ -2,7 +2,7 @@
 [![BuildStatus](https://travis-ci.com/jackofdiamond5/BackpackTfApi.svg?branch=master)](https://travis-ci.org/jackofdiamond5/BackpackTfApi)
 # Backpack.Tf Api
 
-[Backpack.Tf Api](https://github.com/jackofdiamond5/BackpackTfApi) is a project that provides wrapper models and utility classes for easier management for the [backpack.tf](https://backpack.tf) API endpoints. Built with the mindset of being useful for all sorts of applications, it lives to serve the following goals:
+[Backpack.Tf Api](https://github.com/jackofdiamond5/BackpackTfApi) is a project that provides wrapper models and utility classes for easier management of the [backpack.tf](https://backpack.tf) API endpoints. Built with the mindset of being useful for all sorts of applications, it lives to serve the following goals:
 - Be easy to use and understand
 - Be well documented
 - Unify all API endpoints and provide simple handlers
@@ -28,7 +28,7 @@
 |WebAPI Economy|Prices|Handles prices for all Team Fortress 2 items.
 |WebAPI Economy|SpecialItems|Contains information for special items.
 |WebAPI Users|WebUsers|Contains models for users at [backpack.tf](https://backpack.tf)
-|WebAPI Users|WebImpersonatedUsers|Contains models for impersinated users at [backpack.tf](https://backpack.tf)
+|WebAPI Users|WebImpersonatedUsers|Contains models for impersonated users at [backpack.tf](https://backpack.tf)
 |SteamUser|UserInventory|Handles calls to [Steam](https://store.steampowered.com)'s inventory API endpoint. 
 |UserToken|ClassifiedsSearch|Models for searching [backpack.tf](https://backpack.tf) classifieds.
 |UserToken|ListingsCreator|Models for handling input and response when creating classifieds.
