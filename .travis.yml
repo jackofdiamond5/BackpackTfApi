@@ -3,14 +3,18 @@ mono: none
 os: linux
 dist: trusty
 dotnet: 2.0.0
-script: dotnet nuget push src/BackpackTfApi/bin/Release/BackpackTfApi.***.nupkg --api-key
-  NUGET_API_KEY
-deploy: 
-skip_cleanup: true
-provider: script
-true:
-  tags: true
-  condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
+script:
+- dotnet build -c Release
+- dotnet test
+- dotnet pack -c Release
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: dotnet nuget push src/BackpackTfApi/bin/Release/BackpackTfApi.***.nupkg
+    --api-key NUGET_API_KEY
+  on:
+    tags: true
+    condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
 env:
   global:
-    secure: fbzAAlD0O/MVjvW1jb46296WyG8vOp+lfZWIWfziOEsnb0c8ofPg+iWF41gI9Gb5eb3FMnT/LVDksZB6V9/phC1tb/riyS9anD5/Q3kqkHhSDW2rfNikCbv/DEeTT5KCA2bu9ssm7NTyzA/fFvTl8Bthv5RNP0iz/Iecob2xvMODmNmlT95ghX/xzr1hfglbJ1ZOQpdsUwy3oUtW1DC3wG1/fTea9MsiL+2Rna1Yr7pUUEKPmPKMa2jyIxnoX1Rgue6NNi07fJoio782thvRf9pXQ8xOgoOAE/OMy62URTTkkLI3Oj4GhUGTNvyO+pKxugmoVauUsON5VUe1RZEZNuVolMBwpZgq65Q4cocL3RYIoxSBo50oPiwV8ct9bOaejo5KAkMQcqFAIIjG9qmaNhmp1RTR4znQgzwUmbMdg8FzUyWbioS5bmcEETv6PAwRhxl3dMJ90VBDKszDtiaLcU0KrUYtCxcvnNDnQ60FOLyl8rJVWBd/GIphL5dKjmoJYY8oZiHst7EsjnJtjNPA3hcBf0o4LFxKsP5RjkKInyW0az0bDO8lRufZLiKoUoF/rBhDYcmGOdnvk3M21m3EjzufJ31sVrgcKc+BjIHnf/CHjIzdAew3CDvBfHkLUYazZCS2qASrEzMRTA7spGIU8AiZTmx4Hqlm24Iv6iD4koo=
+    secure: fodWl0U9cfIwLCUNlq9EHZWnq+hs/iiMjLPX+XZGtHK+oINyH3CPYcvydqb6KCkftNfhhxc64OiSouB3FPS6g13EhDC9RLKoqn+DjePFoh07BP2ErnocXsku/oIz4PcS4jxkxOCu4wwAXDNM/Av6DilT+PFj8GhV6XQyKX43N09VtkvQLrWRxJkMu2on4fkPJ+FrTA2Yiehcgj/Df2vvsyOAcku0uzcww7weg4pmFqztvZTMiY1+8Pc22YHBeG9Tj+ZQewH1Ob0vIFort9THIsp97gvnf3qG+9oP2EJZS+3xPOBcWOErW7ICeFYy1nS7QnuBiTq7zQYxl6zqap4ff8g9fTJKCiHt4MaYvhOomjnlqg8TM3VaR74Setg4NijlxZVdDBNFZBbyp4u4Ns7uB2JOoZyJmQCl8Z9gzBxBAAcxVyDp3DVwu1aTcG9exEUcdRk4XOzX2SJMJees495y9nmSY9pQefCuoImztNh/5wdFVcjw6otM5jR+I8/uIiYkYWi9aODGxjGY04Vq3grR6DB/WAUVCWgHPX6obyHmTGQPwWIpkCodzE3TnGwbSMFv44S4Q0TCJNRwESCidAqMSfmmwgEGWFFVVE/6Gx/+m761WxyfMmm2E9rkPh3dEuVQxs2hyD1PFGu4zwbB2W8xd3Tw6fq2ZpPwyOQimNZ+pbg=
