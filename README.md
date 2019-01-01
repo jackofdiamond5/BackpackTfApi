@@ -74,6 +74,13 @@
 |ItemNotFoundException|Thrown if an item could not be located. It is currently used mainly for the user's inventory.
 |InventoryNullException|Thrown if GetItemFromInventory is called when the user's inventory is null.
 
+## Setup
+
+Open your package manager console and run:
+```
+Install-Package BackpackTfApi -Version 1.0.1
+```
+
 # Examples
 ```c#
 // Instantiate the main user model
