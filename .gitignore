@@ -331,3 +331,4 @@ ASALocalRun/
 /src/Test
 /src/*.json
 /src/*.xml
+/src/*.cs
