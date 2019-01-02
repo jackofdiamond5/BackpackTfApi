@@ -346,7 +346,7 @@ namespace BackpackTfApi
 
             if (itemAsset == null || itemDescription == null)
             {
-                throw new ItemNotFoundException(Messages.ItemNotFoundError);
+                throw new ItemNotFoundException($"{Messages.ItemNotFoundError} Item name - {itemName}");
             }
 
             return new InventoryItem(itemAsset, itemDescription);
