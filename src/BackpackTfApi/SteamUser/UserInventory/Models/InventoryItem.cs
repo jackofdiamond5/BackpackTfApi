@@ -26,14 +26,12 @@ namespace BackpackTfApi.SteamUser.UserInventory.Models
         {
             get
             {
-                try
-                {
-                    return this.Description.MarketHashName;
-                }
-                catch (InvalidOperationException)
+                if (string.IsNullOrWhiteSpace(this.Description.MarketHashName))
                 {
                     throw new ItemNotFoundException(Messages.ItemNotFoundError);
                 }
+
+                return this.Description.MarketHashName;
             }
         }
 
