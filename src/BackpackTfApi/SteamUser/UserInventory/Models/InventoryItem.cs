@@ -52,7 +52,7 @@ namespace BackpackTfApi.SteamUser.UserInventory.Models
                 }
                 catch (InvalidOperationException)
                 {
-                    throw new ItemNotFoundException($"{Messages.ItemNotFoundError}");
+                    throw new ItemNotFoundException(Messages.ItemNotFoundError);
                 }
             }
         }
