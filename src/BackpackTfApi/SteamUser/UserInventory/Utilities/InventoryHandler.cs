@@ -43,6 +43,7 @@ namespace BackpackTfApi.SteamUser.UserInventory.Models
         /// </summary>
         /// <param name="steamInventory"></param>
         /// <param name="itemName"></param>
+        /// <exception cref="InvalidOperationException"></exception>
         /// <returns></returns>
         public static Asset GetItemAsset(Response steamInventory, string itemName)
         {
