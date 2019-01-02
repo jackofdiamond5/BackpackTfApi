@@ -1,5 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Linq;
+using BackpackTfApi.Exceptions;
+using BackpackTfApi.Static;
 
 namespace BackpackTfApi.SteamUser.UserInventory.Models
 {
@@ -23,7 +26,16 @@ namespace BackpackTfApi.SteamUser.UserInventory.Models
         /// <param name="itemName"></param>
         /// <returns></returns>
         public static Description GetItemDescription(Response steamInventory, string itemName)
-            => steamInventory.Descriptions.Where(d => d.Name == itemName).First();
+        {
+            try
+            {
+                return steamInventory.Descriptions.Where(d => d.Name == itemName).First();
+            }
+            catch (InvalidOperationException)
+            {
+                throw new ItemNotFoundException($"{Messages.ItemNotFoundError} Item name - {itemName}");
+            }
+        }
 
         /// <summary>
         /// Gets the Asset object of the targeted item in the user's inventory.
