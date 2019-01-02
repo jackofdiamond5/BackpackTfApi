@@ -62,7 +62,7 @@ namespace BackpackTfApi.SteamUser.UserInventory.Models
         /// <summary>
         /// The quality index of the specified item.
         /// </summary>
-        public string QualityIndex => this.GetItemQualityIndex(this.Name);
+        public string QualityIndex => this.GetItemQualityIndex();
 
         /// <summary>
         /// The Steam inventory's asset object.
@@ -74,7 +74,7 @@ namespace BackpackTfApi.SteamUser.UserInventory.Models
         /// </summary>
         public Description Description { get; internal set; }
 
-        private string GetItemQualityIndex(string name)
+        private string GetItemQualityIndex()
         {
             try
             {
@@ -82,7 +82,7 @@ namespace BackpackTfApi.SteamUser.UserInventory.Models
             }
             catch (ItemNotFoundException)
             {
-                return this.GetIndex(name);
+                return this.GetIndex(this.Name);
             }
         }
 
