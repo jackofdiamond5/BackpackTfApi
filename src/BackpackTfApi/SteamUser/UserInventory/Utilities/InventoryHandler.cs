@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Linq;
-using BackpackTfApi.Exceptions;
+
 using BackpackTfApi.Static;
+using BackpackTfApi.Exceptions;
 
 namespace BackpackTfApi.SteamUser.UserInventory.Models
 {
