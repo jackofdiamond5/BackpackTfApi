@@ -174,7 +174,6 @@ namespace BackpackTfApi
                 $"steamids={string.Join(',', ids)}");
             using (var client = new WebClient())
                 return WebUsersData.FromJson(client.DownloadString(uri));
-
         }
 
         /// <summary>
@@ -211,19 +210,15 @@ namespace BackpackTfApi
         /// <summary>
         /// Fetches the currently opened user's classifieds from backpack.tf.
         /// </summary>
-        /// <param name="intent">0 - Buy Listings 1 - Sell Listings. Returns both if not set.</param>
+        /// <param name="intent">0 - Buy Listings. 1 - Sell Listings. Returns both if not set.</param>
         /// <param name="inactive">0 - Include inactive listings. 1 - Skip inactive listings.</param>
         /// <returns></returns>
         /// <exception cref="WebException"></exception>
         /// <exception cref="NotSupportedException"></exception>
         public UserToken.Classifieds.UserListings.Models.Response GetOwnClassifieds(int? intent = null, int inactive = 1)
         {
-            var uri = this.BuildUri(BaseUris.UserListings,
-                this.AccessToken,
-                $"intent={intent}",
-                $"inactive={inactive}");
-            using (var client = new WebClient())
-                return UserListingsData.FromJson(client.DownloadString(uri));
+            var uri = this.BuildUri(BaseUris.UserListings, this.AccessToken);
+            return UserListingsHandler.GetUserListings(uri, intent, inactive);
         }
 
         /// <summary>
@@ -247,7 +242,7 @@ namespace BackpackTfApi
             }
             catch (InvalidOperationException)
             {
-                throw new ItemNotFoundException(Messages.ItemNotFoundError);
+                throw new ItemNotFoundException($"{Messages.ItemNotFoundError} Item - {fullItemName}");
             }
 
             if (itemAsset != null)
