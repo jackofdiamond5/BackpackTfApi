@@ -70,7 +70,7 @@
 ## Custom Exceptions
 |Name|Description
 |:--|:--|
-|ClassifiedCreationFailureException|Thrown when something internally prevented the item from being created. If  [backpack.tf](https://backpack.tf) declined the creation of the classified, the exception is not thrown.
+|ClassifiedCreationFailureException|Thrown when something internally prevented the classified from being created. If  [backpack.tf](https://backpack.tf) declined the creation of the classified, the exception is not thrown.
 |ItemNotFoundException|Thrown if an item could not be located. It is currently used mainly for the user's inventory.
 |InventoryNullException|Thrown if GetItemFromInventory is called when the user's inventory is null.
 
