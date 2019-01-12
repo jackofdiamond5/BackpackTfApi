@@ -6,7 +6,7 @@
 - Be easy to use and understand
 - Be well documented
 - Unify all API endpoints and provide simple handlers
-- Provide simple ways of serialization and deserialization
+- Provide ways for serialization and deserialization
 - Internally handle all API calls but also expose functionality for custom implementations
 - Offer simple ways of handling the various responses and transform them into .NET types
 
