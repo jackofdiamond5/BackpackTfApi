@@ -174,7 +174,6 @@ namespace BackpackTfApi
                 $"steamids={string.Join(',', ids)}");
             using (var client = new WebClient())
                 return WebUsersData.FromJson(client.DownloadString(uri));
-
         }
 
         /// <summary>
@@ -211,19 +210,15 @@ namespace BackpackTfApi
         /// <summary>
         /// Fetches the currently opened user's classifieds from backpack.tf.
         /// </summary>
-        /// <param name="intent">0 - Buy Listings 1 - Sell Listings. Returns both if not set.</param>
+        /// <param name="intent">0 - Buy Listings. 1 - Sell Listings. Returns both if not set.</param>
         /// <param name="inactive">0 - Include inactive listings. 1 - Skip inactive listings.</param>
         /// <returns></returns>
         /// <exception cref="WebException"></exception>
         /// <exception cref="NotSupportedException"></exception>
         public UserToken.Classifieds.UserListings.Models.Response GetOwnClassifieds(int? intent = null, int inactive = 1)
         {
-            var uri = this.BuildUri(BaseUris.UserListings,
-                this.AccessToken,
-                $"intent={intent}",
-                $"inactive={inactive}");
-            using (var client = new WebClient())
-                return UserListingsData.FromJson(client.DownloadString(uri));
+            var uri = this.BuildUri(BaseUris.UserListings, this.AccessToken);
+            return UserListingsHandler.GetUserListings(uri, intent, inactive);
         }
 
         /// <summary>
@@ -235,7 +230,7 @@ namespace BackpackTfApi
         /// <param name="price">The price for which the listing will be created.</param>
         /// <param name="message">The text that will be typed in the message section of the listing.</param>
         /// <exception cref="ItemNotFoundException"></exception>
-        /// <exception cref="ItemCreationFailureException"></exception>
+        /// <exception cref="ClassifiedCreationFailureException"></exception>
         /// <returns></returns>
         public UserToken.Classifieds.ListingsCreator.Models.Response CreateSellListing(
             string fullItemName, string currency, decimal price, string message)
@@ -245,27 +240,40 @@ namespace BackpackTfApi
             {
                 itemAsset = InventoryHandler.GetItemAsset(this.userInventory, fullItemName);
             }
-            catch (WebException)
+            catch (InvalidOperationException)
             {
-                throw new ItemNotFoundException(Messages.ItemNotFoundError);
+                throw new ItemNotFoundException($"{Messages.ItemNotFoundError} Item - {fullItemName}");
             }
-
-            var currencies = new Dictionary<string, decimal>
-            {
-                { currency, price }
-            };
-            var listings = new List<InputListing>
-            {
-                new InputListing(1, currencies, message, itemAsset.AssetId)
-            };
 
             if (itemAsset != null)
             {
-                var uri = this.BuildUri(BaseUris.ClassifiedsCreate, this.AccessToken);
-                return UserListingsHandler.CreateListings(new Input(listings), uri);
+                var listings = this.CreateListingsCollection(1, currency, price, message, itemAsset.AssetId);
+                return this.PostListing(listings);
             }
 
-            throw new ItemCreationFailureException($"Failed to create listing for item - {fullItemName}");
+            throw new ClassifiedCreationFailureException($"Failed to create listing for item - {fullItemName}");
+        }
+
+        /// <summary>
+        /// Creates a sell listing / classified on backpack.tf.
+        /// </summary>
+        /// <param name="item">An item extracted from the user's inventory.</param>
+        /// <param name="currency">The currency type.</param>
+        /// <param name="price">The price for which the listing will be created.</param>
+        /// <param name="message">The text that will be typed in the message section of the listing.</param>
+        /// <exception cref="ClassifiedCreationFailureException"></exception>
+        /// <returns></returns>
+        public UserToken.Classifieds.ListingsCreator.Models.Response CreateSellListing(
+            InventoryItem item, string currency, decimal price, string message)
+        {
+            var itemAssetId = item.Asset.AssetId;
+            if (itemAssetId != null)
+            {
+                var listings = this.CreateListingsCollection(1, currency, price, message, itemAssetId);
+                return this.PostListing(listings);
+            }
+
+            throw new ClassifiedCreationFailureException($"Failed to create listing for item - {item.Name}");
         }
 
         /// <summary>
@@ -277,28 +285,41 @@ namespace BackpackTfApi
         /// <param name="currency">The currency type.</param>
         /// <param name="price">The price for which the listing will be created.</param>
         /// <param name="message">The text that will be typed in the message section of the listing.</param>
-        /// <exception cref="ItemCreationFailureException"></exception>
+        /// <exception cref="ClassifiedCreationFailureException"></exception>
         /// <returns></returns>
         public UserToken.Classifieds.ListingsCreator.Models.Response CreateBuyListing(
             string fullItemName, string qualityIndex, string currency, decimal price, string message)
         {
             var item = new ListingItem(fullItemName, qualityIndex);
-            var currencies = new Dictionary<string, decimal>
-            {
-                { currency, price }
-            };
-            var listings = new List<InputListing>()
-            {
-                new InputListing(0, currencies, message, null, item)
-            };
-
+            var listings = this.CreateListingsCollection(0, currency, price, message, null, item);
             if (listings.Count > 0)
             {
-                var uri = this.BuildUri(BaseUris.ClassifiedsCreate, this.AccessToken);
-                return UserListingsHandler.CreateListings(new Input(listings), uri);
+                return this.PostListing(listings);
             }
 
-            throw new ItemCreationFailureException($"Failed to create listing for item - {fullItemName}");
+            throw new ClassifiedCreationFailureException($"Failed to create listing for item - {fullItemName}");
+        }
+
+        /// <summary>
+        /// Creates a buy listing / classified on backpack.tf.
+        /// </summary>
+        /// <param name="item">An item extracted from the user's inventory.</param>
+        /// <param name="currency">The currency type.</param>
+        /// <param name="price">The price for which the listing will be created.</param>
+        /// <param name="message">The text that will be typed in the message section of the listing.</param>
+        /// <exception cref="ClassifiedCreationFailureException"></exception>
+        /// <returns></returns>
+        public UserToken.Classifieds.ListingsCreator.Models.Response CreateBuyListing(
+            InventoryItem item, string currency, decimal price, string message)
+        {
+            var listingItem = new ListingItem(item.Name, item.QualityIndex);
+            var listings = this.CreateListingsCollection(0, currency, price, message, null, listingItem);
+            if (listings.Count > 0)
+            {
+                return this.PostListing(listings);
+            }
+
+            throw new ClassifiedCreationFailureException($"Failed to create listing for item - {item.Name}");
         }
 
         /// <summary>
@@ -346,7 +367,7 @@ namespace BackpackTfApi
 
             if (itemAsset == null || itemDescription == null)
             {
-                throw new ItemNotFoundException(Messages.ItemNotFoundError);
+                throw new ItemNotFoundException($"{Messages.ItemNotFoundError} Item name - {itemName}");
             }
 
             return new InventoryItem(itemAsset, itemDescription);
@@ -362,6 +383,25 @@ namespace BackpackTfApi
             }
 
             return builder.ToString().TrimEnd('&');
+        }
+
+        private UserToken.Classifieds.ListingsCreator.Models.Response PostListing(ICollection<InputListing> listings)
+        {
+            var uri = this.BuildUri(BaseUris.ClassifiedsCreate, this.AccessToken);
+            return UserListingsHandler.CreateListings(new Input(listings), uri);
+        }
+
+        private ICollection<InputListing> CreateListingsCollection(
+            int intent, string currency, decimal price, string message, string assetId = null, ListingItem item = null)
+        {
+            var currencies = new Dictionary<string, decimal>
+            {
+                { currency, price }
+            };
+            return new List<InputListing>
+            {
+                new InputListing(intent, currencies, message, assetId, item)
+            };
         }
     }
 }

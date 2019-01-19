@@ -17,5 +17,7 @@
         public const string ResponseNullError = "Cannot resolve \"response\" argument.";
 
         public const string InventoryNullError = "The user's inventory cannot be null.";
+
+        public const string ItemQualityError = "Failed to determine item quality.";
     }
 }
