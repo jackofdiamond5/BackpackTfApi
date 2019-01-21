@@ -50,7 +50,7 @@
 
 |Member Name|Type|Description
 |:---|:----|:--|
-|SteamId64|Property|The steam id associated with a steam account.
+|SteamId64|Property|The Steam ID associated with a steam account.
 |ApiKey|Property|The API key prvided by [backpack.tf](https://backpack.tf)
 |AccessToken|Property|The access token provided by [backpack.tf](https://backpack.tf)
 |GetCurrencies|Method|Returns internal currency data for Team Fortress 2|
