@@ -113,5 +113,4 @@ var responseSellListing = bptfUser.CreateSellListing("Madame Dixie", "metal", 5,
 ```c#
 var responseBuyListing = bptfUser.CreateBuyListing(targetItem, "metal", 5, "I want to buy this item! :)");
 ```
-```
 
