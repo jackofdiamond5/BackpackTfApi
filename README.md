@@ -78,7 +78,7 @@
 
 Open your package manager console and run:
 ```
-Install-Package BackpackTfApi -Version 1.0.1
+Install-Package BackpackTfApi -Version 1.0.2
 ```
 
 # Examples
@@ -97,9 +97,12 @@ var myInventory = bptfUser.GetOwnInventory();
 // The returned InventoryItem object contains the item's Asset and Description models.
 var targetItem = bptfUser.GetItemFromInventory("Madame Dixie");
 
-// Create a new sell classified
+// Create a new sell classified by typing the item manually
 // The returned Response object will contain information on whether the classified was successfully created or not.
 // NOTE: You must have the item in your inventory or else ItemNotFoundException is thrown
-var response = bptfUser.CreateSellListing("Madame Dixie", "metal", 5, "I want to sell this item! :)");
+var responseSellListing = bptfUser.CreateSellListing("Madame Dixie", "metal", 5, "I want to sell this item! :)");
+
+// Overloads for CreateBuyListing and CreateSellListing are suppored where you pass in an InventoryItem.
+var responseSellListing = bptfUser.CreateBuyListing(targetItem, "metal", 5, "I want to buy this item! :)");
 ```
 
