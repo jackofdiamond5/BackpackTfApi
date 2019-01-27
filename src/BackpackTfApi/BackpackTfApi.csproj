@@ -9,7 +9,6 @@
     <Company></Company>
     <Description>A set of models and utility functions to communicate with the various APIs on backpack.tf.</Description>
     <RepositoryUrl>https://github.com/jackofdiamond5/BackpackTfApi</RepositoryUrl>
-    <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
     <RepositoryType />
     <PackageTags>backpacktf tf tf2</PackageTags>
     <NeutralLanguage>en-150</NeutralLanguage>

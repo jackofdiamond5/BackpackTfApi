@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BackpackTfApi</id>
+    <version>1.0.3</version>
+    <title>BackpackTfApi</title>
+    <authors>Boris Penkov</authors>
+    <owners>Boris Penkov</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/jackofdiamond5/BackpackTfApi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A set of models and utility functions to communicate with the various APIs on backpack.tf.</description>
+    <copyright>Copyright 2019</copyright>
+    <tags>backpacktf tf tf2</tags>
+	<dependencies>
+		<group targetFramework="netcoreapp2.0">
+			<dependency id="Newtonsoft.Json" version="11.0.2"/>
+		</group>
+	</dependencies>
+  </metadata>
+</package>
