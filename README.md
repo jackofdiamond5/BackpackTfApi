@@ -78,7 +78,7 @@
 
 Open your package manager console and run:
 ```
-Install-Package BackpackTfApi -Version 1.0.2
+Install-Package BackpackTfApi -Version 1.0.3
 ```
 
 # Examples
