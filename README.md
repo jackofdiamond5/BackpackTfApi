@@ -111,7 +111,7 @@ var targetItem = bptfUser.GetItemFromInventory("Madame Dixie");
 var responseSellListing = bptfUser.CreateSellListing("Madame Dixie", "metal", 5, "I want to sell this item! :)");
 ```  
   
-- Overloads for CreateBuyListing and CreateSellListing are suppored where you pass in an InventoryItem.
+- Overloads for CreateBuyListing and CreateSellListing are supported where you pass in an InventoryItem.
 ```c#
 var responseBuyListing = bptfUser.CreateBuyListing(targetItem, "metal", 5, "I want to buy this item! :)");
 ```  
