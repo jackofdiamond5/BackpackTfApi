@@ -57,7 +57,7 @@
 |GetPriceHistory|Method|Returns price history for the specified item.
 |GetItemPrices|Method|Fetches item prices for the specified API key. A request may be sent once every 60 seconds.
 |GetSpecialitems|Method|Gets special items for the specified API key.
-|GetUsersByIds|Method|Fetch users data for an array of SteamId64-s.
+|GetUsersByIds|Method|Fetches users data for an array of SteamId64-s.
 |GetImpersonatedUsers|Method|Get impersonated users for a user's SteamId64.
 |GetClassifieds|Method|Fetches all currently open classifieds that are on [backpack.tf](https://backpack.tf)
 |GetOwnClassifieds|Method|Fetches the currently opened user's classifieds from [backpack.tf](https://backpack.tf)
