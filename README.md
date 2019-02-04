@@ -82,36 +82,36 @@ Install-Package BackpackTfApi -Version 1.0.3
 ```
 
 # Examples
-- Instantiate the main user model
+- Instantiate the main user model:
 ```c#
 var bptfUser = new BackpackTfUser("mySteamId64", "myBackpackTfApiKey", "myBackpackTfAccessToken");
 ```  
   
-- See your own listings
+- See your own listings:
 ```c#
 var myOpenClassifieds = bptfUser.GetOwnClassifieds();
 ```  
   
-- See your inventory
+- See your inventory:
 ```c#
 // The returned Response object will contain all items in your inventory.
 var myInventory = bptfUser.GetOwnInventory();
 ```
   
-- Get an item from your inventory
+- Get an item from your inventory:
 ```c#
 // The returned InventoryItem object contains the item's Asset and Description models.
 var targetItem = bptfUser.GetItemFromInventory("Madame Dixie");
 ```  
   
-- Create a new sell classified by typing the item manually  
+- Create a new sell classified by typing the item manually:  
 **NOTE: You must have the item in your inventory or else ItemNotFoundException is thrown**
 ```c#
 // The returned Response object will contain information on whether the classified was successfully created or not.
 var responseSellListing = bptfUser.CreateSellListing("Madame Dixie", "metal", 5, "I want to sell this item! :)");
 ```  
   
-- Overloads for CreateBuyListing and CreateSellListing are supported where you pass in an InventoryItem.
+- Overloads for CreateBuyListing and CreateSellListing are supported where you pass in an InventoryItem:
 ```c#
 var responseBuyListing = bptfUser.CreateBuyListing(targetItem, "metal", 5, "I want to buy this item! :)");
 ```  
