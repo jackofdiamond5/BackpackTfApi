@@ -15,10 +15,10 @@
 ## Handlers
 |Name|Description
 |:---|:----|
-|WebAPI Economy|Item prices and currencies manager|
-|WebAPI Users|[backpack.tf](https://backpack.tf) users manager|
-|SteamUser|[Steam](https://store.steampowered.com) users manager|
-|UserToken|Manager for endpoints that work with access tokens|
+|WebAPI Economy|Item prices and currencies manager.|
+|WebAPI Users|[backpack.tf](https://backpack.tf) users manager.|
+|SteamUser|[Steam](https://store.steampowered.com) users manager.|
+|UserToken|Manager for endpoints that work with access tokens.|
 
 ## Models 
 |Handler|Endpoint|Description
