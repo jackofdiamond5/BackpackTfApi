@@ -15,7 +15,6 @@ deploy:
     --api-key NUGET_API_KEY
   on:
     tags: true
-    condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
 env:
   global:
     secure: RRrbvqE4Eu8IGeA/HadKncff/8sVv+wazacDcGOhs+wU9qwaDb6mkKySehzipkcmP7SNOhZmtZ8qOOpvbGkUJKAdgDLKNhOoZ5KbuCrQUj0PayU6t6TAz/+CuuqqUEWxcvAk9NT5ydgxi7YDCtgj9QkKZno/0ZZd5HWXlmeMkw/M2Vwx07quUpoOJSO6lkO/tMauD4q1uF0zA0H2ePo85LQfRme4rXWwK7kdYAe+z81sN5zw7Z2DHUs6IVK43tUw5HLlhSLjQzbt6xdZTDkh/9c9ohS21hqhamVpcY+h+IwaYLTZzbqBm/ls+HtdpHML33HCC3P6JjZzOwCvIOar/N43uLS5n4ndmoYG6qOqHK3ok2uNynd47T3W+dzCcIt6KGQgZJswq7E5dbDcLmXuK2hXt4EMTmw/+3OdW1yETTKIMle4gsYz6A8ehW1ISN6Bh5ltS4TO3ApiAcaG4BWQfNaCYsGvYwStDss2XOXKrvu+RsK9hfthG1TLS+CQSEQZZLhrVkHfOh3BhwDbBq8nRvyDDQMyFGpgws+plOVhj2Dxmh2NFU7uhhATch0wVS7tjL9Cdv3XxfJloMoiL3LVwXydSvFwTHv4B1jeibMaBMmyyFUvKXAfVGq/0B/EDtUHvHK30TzIBVBFlAPWVInEZD5OA6t05YxwoNlnVlM2jLM=

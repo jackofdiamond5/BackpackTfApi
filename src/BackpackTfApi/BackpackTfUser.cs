@@ -25,6 +25,7 @@ namespace BackpackTfApi
         private string steamId64 = "";
         private string apiKey = "";
         private string accessToken = "";
+        private WebClient client;
 
         private SteamUser.UserInventory.Models.Response userInventory = null;
 
@@ -33,6 +34,7 @@ namespace BackpackTfApi
             this.SteamId64 = steamid64;
             this.ApiKey = apiKey;
             this.AccessToken = accessToken;
+            this.client = new WebClient();
 
             this.userInventory = this.GetOwnInventory();
         }
@@ -124,7 +126,7 @@ namespace BackpackTfApi
                 $"priceindex={priceIndex}",
                 $"quality={itemQuality}");
 
-            using (var client = new WebClient())
+            using (this.client)
                 return PriceHistoryData.FromJson(client.DownloadString(uriValue));
         }
 
@@ -143,7 +145,7 @@ namespace BackpackTfApi
                 this.ApiKey,
                 $"raw={raw}",
                 $"since={since}");
-            using (var client = new WebClient())
+            using (this.client)
                 return PricesData.FromJson(client.DownloadString(uriValue));
         }
 
@@ -156,7 +158,7 @@ namespace BackpackTfApi
         public SpecialItemsData GetSpecialItems()
         {
             var uri = this.BuildUri(BaseUris.GetSpecialItems, this.ApiKey, $"appid={BaseUris.AppId}");
-            using (var client = new WebClient())
+            using (this.client)
                 return SpecialItemsData.FromJson(client.DownloadString(uri));
         }
 
@@ -172,7 +174,7 @@ namespace BackpackTfApi
             var uri = this.BuildUri(BaseUris.GetUsers,
                 this.ApiKey,
                 $"steamids={string.Join(',', ids)}");
-            using (var client = new WebClient())
+            using (this.client)
                 return WebUsersData.FromJson(client.DownloadString(uri));
         }
 
@@ -190,7 +192,7 @@ namespace BackpackTfApi
                 this.ApiKey,
                 $"limit={limit}",
                 $"skip={skip}");
-            using (var client = new WebClient())
+            using (this.client)
                 return ImpersonatedUsersData.FromJson(client.DownloadString(uri));
         }
 
@@ -203,7 +205,7 @@ namespace BackpackTfApi
         public UserToken.Classifieds.ClassifiedsSearch.Models.Response GetClassifieds()
         {
             var uri = this.BuildUri(BaseUris.ClassifiedsSearch, this.ApiKey);
-            using (var client = new WebClient())
+            using (this.client)
                 return ClassifiedsData.FromJson(client.DownloadString(uri));
         }
 
