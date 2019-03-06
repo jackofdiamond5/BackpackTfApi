@@ -53,7 +53,7 @@
 |SteamId64|Property|The Steam ID associated with a steam account.
 |ApiKey|Property|The API key prvided by [backpack.tf](https://backpack.tf)
 |AccessToken|Property|The access token provided by [backpack.tf](https://backpack.tf)
-|GetCurrencies|Method|Returns internal currency data for Team Fortress 2|
+|GetCurrencies|Method|Returns internal currency data for Team Fortress 2.|
 |GetPriceHistory|Method|Returns price history for the specified item.
 |GetItemPrices|Method|Fetches item prices for the specified API key. A request may be sent once every 60 seconds.
 |GetSpecialitems|Method|Gets special items for the specified API key.
