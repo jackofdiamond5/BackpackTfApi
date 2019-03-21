@@ -105,7 +105,7 @@ var targetItem = bptfUser.GetItemFromInventory("Madame Dixie");
 ```  
   
 - Create a new sell classified by typing the item manually:  
-**NOTE: You must have the item in your inventory or else ItemNotFoundException is thrown**
+**NOTE: You must have the item in your inventory or else ItemNotFoundException is thrown.**
 ```c#
 // The returned Response object will contain information on whether the classified was successfully created or not.
 var responseSellListing = bptfUser.CreateSellListing("Madame Dixie", "metal", 5, "I want to sell this item! :)");
